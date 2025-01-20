@@ -284,7 +284,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://wormateserkanconnect.github.io//wormateserkanconnect6/api/server.php"")
+    await fetch("https://wormateserkanconnect.github.io/wormateserkanconnect6/api/server.php")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
