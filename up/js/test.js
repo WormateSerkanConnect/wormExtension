@@ -1,5 +1,5 @@
 
-var SITE_XTHOST = "https://wormatefriendsturkey.com";
+var SITE_XTHOST = "https://wormateserkanconnect.github.io/wormateserkanconnect6";
 window.detectLog = null;
 const _wrmxt = {
     BETAisSkinCustom(input) {
@@ -263,7 +263,7 @@ let servers = {
 
 
 async function loadUsers() {
-    await fetch("https://wormatefriendsturkey.com/extension/api/revision1")
+    await fetch("https://wormateserkanconnect.github.io//wormateserkanconnect6/api/users.php")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -284,7 +284,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://wormatefriendsturkey.com/extension/api/revision2")
+    await fetch("https://wormateserkanconnect.github.io//wormateserkanconnect6/api/server.php"")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -5768,7 +5768,7 @@ else {
         var showServers = function () {
 
 
-            $('#mm-event-text').replaceWith('<div class="text-vnxx"><a href="https://www.wormatefriendsturkey.com">Maceraya HazÄ±r mÄ±sÄ±n ? ğŸ²</a></div>');
+            $('#mm-event-text').replaceWith('<div class="text-vnxx"><a href="https://www.wormatefriendsturkey.com">WSC</a></div>');
 
 
 
@@ -5802,7 +5802,7 @@ else {
             </td>
             <td>
             <div class="settings-lineZoom">
-                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> YayÄ±ncÄ± Modu :</span>
+                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Yayıncı Modu :</span>
                     <input class="settings-switchZoom" id="settings-stremingmode-switch" type="checkbox"/>
                     <label for="settings-stremingmode-switch"></label>
                     </div>
@@ -5863,7 +5863,7 @@ else {
 </div>
 
 
-<center><div class="hg"><a target="_blank" href="https://wa.me/905544655080/">AktifleÅŸtir (Temsilci Ãœnal)</a></div></center>
+<center><div class="hg"><a target="_blank" href="https://discord.gg/fjbYh6ms/">Aktifleştir (Temsilci SekoV4)</a></div></center>
 
 
            
@@ -5880,7 +5880,7 @@ else {
       <input type="text" value="${theoKzObjects.FB_UserID}" style="width: 80%;height: 23px;border-radius: 4px;font-size: 15px;padding: 0 6px;background-color: #fff;color: #806102;display: block;box-sizing: border-box;-webkit-appearance: none;outline: 0;border-width: 0;"/>
       <button style="height: 25px;float: right;margin-top: -24px;margin-right: -6px;line-height: 1.2;font-size: 14px;" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID} copiado! copied!'));">Copy</button>
       <center>
-        <div class="hg"><a target="_blank" href="https://wa.me/905544655080/">AktifleÅŸtir (Ãœnal Bey)</a> </div>
+        <div class="hg"><a target="_blank" href="https://discord.gg/fjbYh6ms/">Aktiflerştir (SekoV4)</a> </div>
       </center>
      <i class="fa fa-book" aria-hidden="true" style="color:48ff00;"></i> Instructions for installing on IOS and iPad New 2024: <a style="color: #2ae1eb; font-weight: 600;" href="https://www.youtube.com/">https://www.youtube.com/</a> </div>
       
@@ -5932,11 +5932,11 @@ else {
             <div class="vietnam" style="display: grid !important; grid-template-columns: 1fr 1fr 1fr;gap: 8.5px;">
             
             
-    <input type="button" value="T.EKRAN" class="fullscreen_button">
+    <input type="button" value="F.SCREEN" class="fullscreen_button">
     
-    <input type="button" value="TEKRAR" id="hoisinh" class="fullscreen_respawn">
+    <input type="button" value="RESPAWN" id="hoisinh" class="fullscreen_respawn">
     
-    <input type="button" value="Ä°LETÄ°ÅÄ°M" onclick="window.location.href='https://wa.me/905544655080'" class="fullscreen_contact">
+    <input type="button" value="SKİNLAB" onclick="window.location.href='###'" class="fullscreen_contact">
     </div>
     
     
@@ -5975,7 +5975,7 @@ else {
                         <a href="javascript:void(0);" onclick="changeServer('peru')"> 
                             <span class="flag br" value="https://i.imgur.com/OtgNl1Z.png">
 <div class="title-wormate-yildo-flag" style="position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;">
-    <img src="https://i.imgur.com/g70S8tr.png" width="20" align="center" alt="">Wormate Friends Turkey
+    <img src="https://imgur.com/Rsd2DhA.png" width="20" align="center" alt="">Wormate Serkan Connect
 </div>
                             </span> 
                         </a>
@@ -6212,7 +6212,7 @@ else {
                           border-radius: 10px;
                           border: solid #fac 2px;
                         " 
-                        id="getskin">ğŸ”Skins</button>
+                        id="getskin">Skins</button>
                     </div>
                   `);
                 
@@ -6708,7 +6708,7 @@ $('#default-cursor-btn').click(function () {
         id = name;
         
         $.ajax({
-            url: 'https://wormatefriendsturkey.com/extension/api/wftskns_1.php',
+            url: 'https://wormateserkanconnect.github.io//wormateserkanconnect6/api/skins.php"',
             method: 'GET',
             dataType: 'json',
             success: function (id) {
@@ -6774,10 +6774,10 @@ $("#background-canvas").replaceWith(`
 <a hreflang="es" href="/es/">EspaÃ±ol</a>
 </div></div>
             
-            <a class="link" hreflang="en" href="https://WormateFriendsTurkey.com">Â© 2024 Wormate Friends Turkey</a>
+            <a class="link" hreflang="en" href="https://wormateserkanconnect.github.io/"> © 2025 Wormate Serkan Connect</a>
             
-            <a style="font-size: 17px;font-weight: 600;">WormateFriendsTurkey.Com</a>
-          <a style="font-size: 17px;font-weight: 500;color: #ff0;"> Made with <i class='fa fa-heart animated infinite pulse' style='color:red'></i> in YILDO !</a>
+            <a style="font-size: 17px;font-weight: 600;">wormateserkanconnect.github.io/</a>
+          <a style="font-size: 17px;font-weight: 500;color: #ff0;"> Made with <i class='fa fa-heart animated infinite pulse' style='color:red'></i> in Ankara !</a>
             </footer>
 
 
