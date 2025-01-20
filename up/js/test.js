@@ -1,5 +1,5 @@
 
-var SITE_XTHOST = "https://wormateserkanconnect.github.io/wormateserkanconnect6";
+var SITE_XTHOST = "https://wormatefriendsturkey.com";
 window.detectLog = null;
 const _wrmxt = {
     BETAisSkinCustom(input) {
@@ -33,10 +33,10 @@ const _wrmxt = {
     aId: 0
 };
 
-// PIXI.js uygulama nesnesini oluşturuyoruz
+// PIXI.js uygulama nesnesini oluÅŸturuyoruz
 const app = new PIXI.Application({
-    width: 800,       // Sahne genişliği (örnek değer)
-    height: 600,      // Sahne yüksekliği (örnek değer)
+    width: 800,       // Sahne geniÅŸliÄŸi (Ã¶rnek deÄŸer)
+    height: 600,      // Sahne yÃ¼ksekliÄŸi (Ã¶rnek deÄŸer)
     backgroundColor: 0x000000 // Arka plan rengi (siyah)
 });
 
@@ -44,50 +44,50 @@ const app = new PIXI.Application({
 document.body.appendChild(app.view);
 
 
-// Mouse verilerini takip etmek için değişkenler
+// Mouse verilerini takip etmek iÃ§in deÄŸiÅŸkenler
 let mousePosition = { x: 0, y: 0 }; // Mouse'un mevcut pozisyonu
 let isMouseMoving = false; // Mouse hareket ediyor mu?
 
-// Sahneye mouse olaylarını bağlama
+// Sahneye mouse olaylarÄ±nÄ± baÄŸlama
 const stage = app.stage;
 
-// 1. Mouse hareketlerini gerçek zamanlı yakala
+// 1. Mouse hareketlerini gerÃ§ek zamanlÄ± yakala
 stage.interactive = true; // PIXI sahnesini interaktif yap
 stage.on("mousemove", (event) => {
-    const newPosition = event.data.global; // Mouse'un sahne üzerindeki konumu
+    const newPosition = event.data.global; // Mouse'un sahne Ã¼zerindeki konumu
     mousePosition.x = newPosition.x;
     mousePosition.y = newPosition.y;
-    isMouseMoving = true; // Mouse hareket ediyor olarak işaretle
+    isMouseMoving = true; // Mouse hareket ediyor olarak iÅŸaretle
 });
 
-// 2. Mouse durumunu izlemek için bir döngü
+// 2. Mouse durumunu izlemek iÃ§in bir dÃ¶ngÃ¼
 function processMouseMovement(delta) {
     if (isMouseMoving) {
-        // Mouse hareket ediyorsa işlem yap
+        // Mouse hareket ediyorsa iÅŸlem yap
    //     console.log(`Mouse hareket etti: x=${mousePosition.x}, y=${mousePosition.y}`);
         
-        // Burada mouse pozisyonuna göre özel işlemler yapabilirsiniz
+        // Burada mouse pozisyonuna gÃ¶re Ã¶zel iÅŸlemler yapabilirsiniz
         handleMouseAction(mousePosition);
 
-        isMouseMoving = false; // Hareket işlemi tamamlandı
+        isMouseMoving = false; // Hareket iÅŸlemi tamamlandÄ±
     }
 }
 
-// 3. Mouse hareketlerine bağlı özel işlem fonksiyonu
+// 3. Mouse hareketlerine baÄŸlÄ± Ã¶zel iÅŸlem fonksiyonu
 function handleMouseAction(position) {
-    // Örnek: Ekranın bir objesiyle etkileşim
+    // Ã–rnek: EkranÄ±n bir objesiyle etkileÅŸim
     if (position.x > 100 && position.y > 100) {
-      //  console.log("Mouse bir hedef alanına ulaştı!");
+      //  console.log("Mouse bir hedef alanÄ±na ulaÅŸtÄ±!");
     }
 }
 
-// 4. Oyun döngüsüne mouse işleme fonksiyonunu bağla
+// 4. Oyun dÃ¶ngÃ¼sÃ¼ne mouse iÅŸleme fonksiyonunu baÄŸla
 function updateGameLogic(delta) {
-    // Diğer oyun mantığı işlenirken mouse hareketlerini kontrol et
+    // DiÄŸer oyun mantÄ±ÄŸÄ± iÅŸlenirken mouse hareketlerini kontrol et
     processMouseMovement(delta);
 }
 
-// Oyun döngüsü (FPS kontrolü ile)
+// Oyun dÃ¶ngÃ¼sÃ¼ (FPS kontrolÃ¼ ile)
 let lastUpdate = performance.now();
 const targetFPS = 60;
 const interval = 1000 / targetFPS;
@@ -95,7 +95,7 @@ const interval = 1000 / targetFPS;
 function gameLoop(currentTime) {
     const delta = currentTime - lastUpdate;
     if (delta >= interval) {
-        updateGameLogic(delta); // Oyun mantığı çağrılıyor
+        updateGameLogic(delta); // Oyun mantÄ±ÄŸÄ± Ã§aÄŸrÄ±lÄ±yor
         lastUpdate = currentTime;
     }
     requestAnimationFrame(gameLoop);
@@ -103,51 +103,51 @@ function gameLoop(currentTime) {
 requestAnimationFrame(gameLoop);
 
 
-// WebSocket bağlantısı oluşturuluyor
+// WebSocket baÄŸlantÄ±sÄ± oluÅŸturuluyor
 const socket = new WebSocket("wss://wormmedia.xyz:8080");
 
-// Oyun durumu (tüm oyuncuların bilgilerini tutar)
+// Oyun durumu (tÃ¼m oyuncularÄ±n bilgilerini tutar)
 const gameState = {
-  players: new Map() // Oyuncuları ID'lerine göre saklayan bir harita
+  players: new Map() // OyuncularÄ± ID'lerine gÃ¶re saklayan bir harita
 };
 
-// WebSocket bağlantısı açıldığında tetiklenen olay
+// WebSocket baÄŸlantÄ±sÄ± aÃ§Ä±ldÄ±ÄŸÄ±nda tetiklenen olay
 socket.addEventListener("open", () => {
-//  console.log("WebSocket sunucusuna bağlanıldı.");
+//  console.log("WebSocket sunucusuna baÄŸlanÄ±ldÄ±.");
 });
 
-// WebSocket üzerinden mesaj alındığında tetiklenen olay
+// WebSocket Ã¼zerinden mesaj alÄ±ndÄ±ÄŸÄ±nda tetiklenen olay
 socket.addEventListener("message", async (event) => {
   try {
     const data = event.data instanceof Blob ? await event.data.text() : event.data;
     const message = JSON.parse(data);
-    handleMessage(message); // Gelen mesaj işleniyor
+    handleMessage(message); // Gelen mesaj iÅŸleniyor
   } catch (error) {
-  //  console.error("Mesaj işlenirken hata:", error);
+  //  console.error("Mesaj iÅŸlenirken hata:", error);
   }
 });
 
-// WebSocket bağlantısı kapandığında tetiklenen olay
+// WebSocket baÄŸlantÄ±sÄ± kapandÄ±ÄŸÄ±nda tetiklenen olay
 socket.addEventListener("close", () => {
- // console.log("WebSocket bağlantısı kapatıldı.");
+ // console.log("WebSocket baÄŸlantÄ±sÄ± kapatÄ±ldÄ±.");
 });
 
-// Gelen mesajları işleyen fonksiyon
+// Gelen mesajlarÄ± iÅŸleyen fonksiyon
 function handleMessage(message) {
-  // Mesaj tipine göre işleme yapılır
+  // Mesaj tipine gÃ¶re iÅŸleme yapÄ±lÄ±r
   if (message.type === "player_update") {
-    // Oyuncu güncellemesi
+    // Oyuncu gÃ¼ncellemesi
     gameState.players.set(message.playerId, message.data);
-//    console.log(`Oyuncu güncellendi: ${message.playerId}`, message.data);
+//    console.log(`Oyuncu gÃ¼ncellendi: ${message.playerId}`, message.data);
   } else if (message.type === "player_disconnect") {
-    // Oyuncu bağlantısı kesildi
+    // Oyuncu baÄŸlantÄ±sÄ± kesildi
     gameState.players.delete(message.playerId);
-  //  console.log(`Oyuncu bağlantısı kesildi: ${message.playerId}`);
+  //  console.log(`Oyuncu baÄŸlantÄ±sÄ± kesildi: ${message.playerId}`);
   } else if (message.type === "game_event") {
-    // Oyun ile ilgili diğer olaylar
-    console.log(`Oyun olayı: ${message.event}`, message.data);
+    // Oyun ile ilgili diÄŸer olaylar
+    console.log(`Oyun olayÄ±: ${message.event}`, message.data);
   } else {
-    //console.log("Bilinmeyen mesaj türü:", message);
+    //console.log("Bilinmeyen mesaj tÃ¼rÃ¼:", message);
   }
 }
 
@@ -263,7 +263,7 @@ let servers = {
 
 
 async function loadUsers() {
-    await fetch("https://wormateserkanconnect.github.io/wormateserkanconnect6/api/users.php")
+    await fetch("https://wormatefriendsturkey.com/extension/api/revision1")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -284,7 +284,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://wormateserkanconnect.github.io/wormateserkanconnect6/api/server.php")
+    await fetch("https://wormatefriendsturkey.com/extension/api/revision2")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -406,7 +406,7 @@ const ctx = {
         }),
     }
 };
-ctx.clock = PIXI.Sprite.fromImage("https://imgur.com/Zvt22of.png");
+ctx.clock = PIXI.Sprite.fromImage("https://i.imgur.com/v6szE9c.png");
 ctx.clock.width = 100;
 ctx.clock.height = 100;
 ctx.clock.x = -50;
@@ -416,15 +416,15 @@ ctx.clock.y = -50;
 
 
 /*server name */
-ctx.value_server = new PIXI.Text("WSC", ctx.fontStyle.name);
+ctx.value_server = new PIXI.Text("WFC", ctx.fontStyle.name);
 ctx.value_server.x = 25;
 ctx.value_server.y = -18;
 
 ctx.fontStyle.name = new PIXI.TextStyle({
     fill: "#FFFFFF",
-    fontSize: 10, // Yazı boyutunu küçültmek
-    fontWeight: "normal", // Kalınlık azaltıldı
-    stroke: null, // Stroke kaldırıldı
+    fontSize: 10, // YazÄ± boyutunu kÃ¼Ã§Ã¼ltmek
+    fontWeight: "normal", // KalÄ±nlÄ±k azaltÄ±ldÄ±
+    stroke: null, // Stroke kaldÄ±rÄ±ldÄ±
 });
 
 
@@ -1036,7 +1036,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                           originPhoto = originPhoto.trim();
                     
                    // console.log(originPhoto);
-                    // InvocaciÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³n a server
+                    // InvocaciÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬ ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³n a server
                     var urlRequest = GATEWAY_HOST + "/pub/wuid/" + e + "/start?gameMode=" + encodeURI(testPostcode) + "&gh=" + p + "&nickname=" + encodeURI(originPhoto) + "&skinId=" + _wrmxt.validInput(primaryKeyId) + "&eyesId=" + encodeURI(fileRelPath) + "&mouthId=" + encodeURI(newSearchboxValue) + "&glassesId=" + encodeURI(eventLabel) + "&hatId=" + encodeURI(srcAtt);
 
                  //   console.log("urlRequest: " + urlRequest);
@@ -2242,7 +2242,7 @@ else {
                     // Harita
                     this.tf.position.x = 790;
                     
-                    // Căn Lề Phải Phụ Kiện
+                    // CÄƒn Lá» Pháº£i Phá»¥ Kiá»‡n
                     this.uf.position.x = 615;
                     
                     // Top 10 Server
@@ -2283,7 +2283,7 @@ else {
                     this.lf.Bf(b.af == GameMode.$e ? app.q.Cf : app.q.Df);
                     var g = this.mf;
                     g.clear();
-                    g.lineStyle(0.1, 0xFF0000); // Kırmızı renk
+                    g.lineStyle(0.1, 0xFF0000); // KÄ±rmÄ±zÄ± renk
                     g.drawCircle(0, 0, b.ub);
                     g.endFill();
                     this.vf.Ef = pct;
@@ -2757,7 +2757,7 @@ else {
                     if (210 < el) {
                         for (let el in this.o.hb) {
                             //console.log(this.o.hb);
-                            //\x\Ãƒâ€˜Ã¢â‚¬Å¡\d{3}
+                            //\x\ÃƒÆ’Ã¢â‚¬ËœÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡\d{3}
                             //console.log(this.o.hb[el].Mb.ad);
                             if (/^(.{16})(\Y_\d{13})$/.test(this.o.hb[el].Mb.ad)) {
                                 console.log("nombre: " + this.o.hb[el].Mb.ad);
@@ -3737,7 +3737,7 @@ else {
                                 // If the new token is also expired, handle the error as needed
                                 autoLoginCount++;
                                 console.log("auto login attempt:", autoLoginCount);
-                                $("#login-view").html("<h2>Auto Login Google Wormate Serkan Connect : " + autoLoginCount + "</h2>");
+                                $("#login-view").html("<h2>Auto Login Google Wormate Friends Connect : " + autoLoginCount + "</h2>");
                                 fetchNewToken();
                             } else {
                                 handleLoginResponse(opts);
@@ -4140,13 +4140,13 @@ else {
                         this.xEmojiType_kill.oh(data);
                     }, t.prototype.updateVisibility = function (collisionHappened, headshotHappened) {
                         if (collisionHappened) {
-                            this.xEmojiType_kill.jh.visible = true; // Çarpışma olduysa emoji_kill görünür
+                            this.xEmojiType_kill.jh.visible = true; // Ã‡arpÄ±ÅŸma olduysa emoji_kill gÃ¶rÃ¼nÃ¼r
                         } else {
-                            this.xEmojiType_kill.jh.visible = false; // Çarpışma yoksa emoji_kill gizlenir
+                            this.xEmojiType_kill.jh.visible = false; // Ã‡arpÄ±ÅŸma yoksa emoji_kill gizlenir
                         }
                     
                         if (headshotHappened) {
-                            this.xEmojiType_headshot.jh.visible = true; // Headshot olduysa emoji_headshot görünür
+                            this.xEmojiType_headshot.jh.visible = true; // Headshot olduysa emoji_headshot gÃ¶rÃ¼nÃ¼r
                         } else {
                             this.xEmojiType_headshot.jh.visible = false; // Headshot yoksa emoji_headshot gizlenir
                         }
@@ -4634,7 +4634,7 @@ else {
                          <div id="final-continue1">Devam(Ana Sayfa)</div>
                          `);
                          
-                          $("#final-continue").after("<div id='final-replay'>Tekrar Başla !</div>");
+                          $("#final-continue").after("<div id='final-replay'>Tekrar BaÅŸla !</div>");
                          
                          
                         
@@ -5727,22 +5727,22 @@ else {
         
         
         <div class="container1">
-                    <span class="settings_span">Solucan Görünüm: </span>
+                    <span class="settings_span">Solucan GÃ¶rÃ¼nÃ¼m: </span>
                     <input id="smoothCamera" class="range" type="range" min="0.3" max="0.6" value="' + theoKzObjects.smoothCamera + '" step="0.1" onmousemove="smoothCameraValue.value=value" />
         </div>         
         
         <div class="container1">
-        <span class="settings_span">İtem Boyutları: </span>
+        <span class="settings_span">Ä°tem BoyutlarÄ±: </span>
         <input id="PortionSize" class="range" type="range" min="1" max="6" value="' + theoKzObjects.PortionSize + '" step="1" onmousemove="rangevalue1.value=value" />
         </div>
         
       <div class="container1">
-      <span class="settings_span">İtem Ayarları Çemberi: </span>
+      <span class="settings_span">Ä°tem AyarlarÄ± Ã‡emberi: </span>
       <input id="PortionAura" class="range" type="range" min="1.2" max="3.2" value="' + theoKzObjects.PortionAura + '" step="0.2" onmousemove="PortionAuravalue.value=value" />
       </div>
        
       <div class="container1">
-                    <span class="settings_span">Mamaların Boyutu: </span>
+                    <span class="settings_span">MamalarÄ±n Boyutu: </span>
                     <input id="FoodSize" class="range" type="range" min="0.5" max="3" value="' + theoKzObjects.FoodSize + '" step="0.5" onmousemove="rangevalue2.value=value" />
                     </div>
                     <div class="container1">
@@ -5768,7 +5768,7 @@ else {
         var showServers = function () {
 
 
-            $('#mm-event-text').replaceWith('<div class="text-vnxx"><a href="https://www.wormatefriendsturkey.com">Maceraya Hazır mısın ? 🐲</a></div>');
+            $('#mm-event-text').replaceWith('<div class="text-vnxx"><a href="https://www.wormatefriendsturkey.com">Maceraya HazÄ±r mÄ±sÄ±n ? ğŸ²</a></div>');
 
 
 
@@ -5784,7 +5784,7 @@ else {
                 
            ID : <input type="text" value="${theoKzObjects.FB_UserID}" class="you-id" />
                 
-                <button class="you-id-copy" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID}  kopyalandı!'));">Kopyala</button>
+                <button class="you-id-copy" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID}  kopyalandÄ±!'));">Kopyala</button>
                 </div>   
                 
                
@@ -5802,7 +5802,7 @@ else {
             </td>
             <td>
             <div class="settings-lineZoom">
-                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Yayıncı Modu :</span>
+                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> YayÄ±ncÄ± Modu :</span>
                     <input class="settings-switchZoom" id="settings-stremingmode-switch" type="checkbox"/>
                     <label for="settings-stremingmode-switch"></label>
                     </div>
@@ -5846,24 +5846,24 @@ else {
     <tbody>
         <tr>
             <td>
-            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Mouse Seçenekleri</div>
+            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Mouse SeÃ§enekleri</div>
                     <div class="cursor-container"><div id="default-cursor-btn"><img style="margin-top: -45px; margin-right: 60px; float: right; width: 25px; height: 28px;" class="img" alt="Imgur-Upload" src="https://i.imgur.com/rI522o3.png"></div></div>
             </td>
             <td>
-            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Arka Plan Seçenekleri</div>
+            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Arka Plan SeÃ§enekleri</div>
                     <div class="background-container"></div>
             </td>
         </tr>
     </tbody>
 </table>
 
-<!-- İFRAME BURAYA EKLENDİ -->
+<!-- Ä°FRAME BURAYA EKLENDÄ° -->
 <div style="text-align: center; margin: 20px 0;">
     <iframe style="width: 100%; height: 43px; border: none;" src="https://haylamday.com/api/skins_upload.php" scrolling="no"></iframe>
 </div>
 
 
-<center><div class="hg"><a target="_blank" href="https://wa.me/905544655080/">Aktifleştir (Temsilci Ünal)</a></div></center>
+<center><div class="hg"><a target="_blank" href="https://wa.me/905544655080/">AktifleÅŸtir (Temsilci Ãœnal)</a></div></center>
 
 
            
@@ -5880,7 +5880,7 @@ else {
       <input type="text" value="${theoKzObjects.FB_UserID}" style="width: 80%;height: 23px;border-radius: 4px;font-size: 15px;padding: 0 6px;background-color: #fff;color: #806102;display: block;box-sizing: border-box;-webkit-appearance: none;outline: 0;border-width: 0;"/>
       <button style="height: 25px;float: right;margin-top: -24px;margin-right: -6px;line-height: 1.2;font-size: 14px;" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID} copiado! copied!'));">Copy</button>
       <center>
-        <div class="hg"><a target="_blank" href="https://wa.me/905544655080/">Aktifleştir (Ünal Bey)</a> </div>
+        <div class="hg"><a target="_blank" href="https://wa.me/905544655080/">AktifleÅŸtir (Ãœnal Bey)</a> </div>
       </center>
      <i class="fa fa-book" aria-hidden="true" style="color:48ff00;"></i> Instructions for installing on IOS and iPad New 2024: <a style="color: #2ae1eb; font-weight: 600;" href="https://www.youtube.com/">https://www.youtube.com/</a> </div>
       
@@ -5936,7 +5936,7 @@ else {
     
     <input type="button" value="TEKRAR" id="hoisinh" class="fullscreen_respawn">
     
-    <input type="button" value="İLETİŞİM" onclick="window.location.href='https://wa.me/905544655080'" class="fullscreen_contact">
+    <input type="button" value="Ä°LETÄ°ÅÄ°M" onclick="window.location.href='https://wa.me/905544655080'" class="fullscreen_contact">
     </div>
     
     
@@ -5974,8 +5974,8 @@ else {
                     <li class="ui-tabs-tab ui-tab ui-tab-inactive0 ui-tab-active" style="margin: -5px">
                         <a href="javascript:void(0);" onclick="changeServer('peru')"> 
                             <span class="flag br" value="https://i.imgur.com/OtgNl1Z.png">
-<div class="title-wormate-Seko-flag" style="position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;">
-    <img src="https://imgur.com/1X5ORdL.png" width="20" align="center" alt="">Wormate Serkan Connect
+<div class="title-wormate-yildo-flag" style="position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;">
+    <img src="https://i.imgur.com/g70S8tr.png" width="20" align="center" alt="">Wormate Friends Turkey
 </div>
                             </span> 
                         </a>
@@ -6034,8 +6034,8 @@ else {
                 let getValue = $(this).attr("value");
                 theoKzObjects.flag = getValue;
                 ctx.containerImgS.texture = ctx.onclickServer;
-                ctx.containerImgS.texture.baseTexture.resolution = 0.5; // Texture çözünürlüğünü düşürün
-                ctx.containerImgS.scale.set(0.5); // Ölçeği küçültün
+                ctx.containerImgS.texture.baseTexture.resolution = 0.5; // Texture Ã§Ã¶zÃ¼nÃ¼rlÃ¼ÄŸÃ¼nÃ¼ dÃ¼ÅŸÃ¼rÃ¼n
+                ctx.containerImgS.scale.set(0.5); // Ã–lÃ§eÄŸi kÃ¼Ã§Ã¼ltÃ¼n
 
                 retundFlagError();
                 console.log(getValue);
@@ -6181,17 +6181,17 @@ else {
                 
                  <div class="bao-list1">
                 <div class="list1"><i class="fa fa-book" aria-hidden="true" style="color:48ff00;"></i>
-                Güncelleme : 20/01/2025
+                GÃ¼ncelleme : 20/01/2025
                 </div>
                 
 <div class="list1" style="color: #48ff00; font-family: Arial, sans-serif; line-height: 1.6;">
     <ul style="list-style: none; padding: 0; margin: 0;">
-        <li><i class="fa fa-book" aria-hidden="true"></i> Yazı fontları değiştirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> Oyun içinde harita değiştirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> Mouse gecikme olayı düzeltildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> Oyuncu sıralaması boyutu düşürüldü.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> Sınır çizgisi düzeltildi, daha ince hale getirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> HS ses düzeltildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i> YazÄ± fontlarÄ± deÄŸiÅŸtirildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i> Oyun iÃ§inde harita deÄŸiÅŸtirildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i> Mouse gecikme olayÄ± dÃ¼zeltildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i> Oyuncu sÄ±ralamasÄ± boyutu dÃ¼ÅŸÃ¼rÃ¼ldÃ¼.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i> SÄ±nÄ±r Ã§izgisi dÃ¼zeltildi, daha ince hale getirildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i> HS ses dÃ¼zeltildi.</li>
         <li>
             <i class="fa fa-link" aria-hidden="true"></i>
             <a href="https://www.youtube.com/" style="color: #48ff00; text-decoration: none;">https://www.youtube.com/</a>
@@ -6212,13 +6212,13 @@ else {
                           border-radius: 10px;
                           border: solid #fac 2px;
                         " 
-                        id="getskin">🔐Skins</button>
+                        id="getskin">ğŸ”Skins</button>
                     </div>
                   `);
                 
-// Tıklama olay dinleyicisi ekleniyor
+// TÄ±klama olay dinleyicisi ekleniyor
 $(document).on('click', '#getskin', function() {
-   // alert("Desenleriniz Kiliti açıldı!");
+   // alert("Desenleriniz Kiliti aÃ§Ä±ldÄ±!");
 });
 
 
@@ -6245,7 +6245,7 @@ function zoomOut() {
 
 function displayZoomLevel() {
   var zoomPercentage = Math.round((window.multiplier / 0.625) * 100);
-  zoomPercentage = Math.min(100, zoomPercentage); // Giới hạn phần trăm tối đa là 100%
+  zoomPercentage = Math.min(100, zoomPercentage); // Giá»›i háº¡n pháº§n trÄƒm tá»‘i Ä‘a lÃ  100%
   var zoomElement = document.getElementById('zoom-percentage');
   zoomElement.textContent = zoomPercentage + '%';
 }
@@ -6557,7 +6557,7 @@ $('#default-cursor-btn').click(function () {
             _anApp.q.Cf = new POGL._b(_anApp.q.fn_o(localStorage.fondoSeleccionado));
         }
 
-        /*Hiển Thị Khi Đã Kích Hoạt*/
+        /*Hiá»ƒn Thá»‹ Khi ÄÃ£ KÃ­ch Hoáº¡t*/
 
 
 
@@ -6635,7 +6635,7 @@ $('#default-cursor-btn').click(function () {
         /*CSS POR JQUERY*/
         setTimeout(function () {
 
-            var namesblock = ["fuck you", "địt", "cái lồn", "chó", "đéo", "lồn", "đéo", "địt", "vãi lồn", "cặc"];
+            var namesblock = ["fuck you", "Ä‘á»‹t", "cÃ¡i lá»“n", "chÃ³", "Ä‘Ã©o", "lá»“n", "Ä‘Ã©o", "Ä‘á»‹t", "vÃ£i lá»“n", "cáº·c"];
 
             $("#mm-action-play").on("click", function () {
                 var nameInsert = $("#mm-params-nickname").val();
@@ -6646,7 +6646,7 @@ $('#default-cursor-btn').click(function () {
                 });
 
                 if (isBlocked) {
-                    $("#mm-params-nickname").val("Văn Minh Lên Bạn");
+                    $("#mm-params-nickname").val("VÄƒn Minh LÃªn Báº¡n");
                 }
             });
            
@@ -6708,7 +6708,7 @@ $('#default-cursor-btn').click(function () {
         id = name;
         
         $.ajax({
-            url: 'https://wormateserkanconnect.github.io/wormateserkanconnect6/api/skins.php',
+            url: 'https://wormatefriendsturkey.com/extension/api/wftskns_1.php',
             method: 'GET',
             dataType: 'json',
             success: function (id) {
@@ -6747,7 +6747,7 @@ $("#background-canvas").replaceWith(`
 
     <canvas id="background-canvas" style="background-color: rgb(145, 73, 21); opacity: 0.65;"></canvas>
     `);
-   //Arka Plan kapattık.  //  <canvas id="background-canvas"></canvas>
+   //Arka Plan kapattÄ±k.  //  <canvas id="background-canvas"></canvas>
  
    
      
@@ -6766,18 +6766,18 @@ $("#background-canvas").replaceWith(`
    
     
             <footer id="markup-footer">
-            <div class="lang-menu"><button class="lang-button">Language ▴</button>
+            <div class="lang-menu"><button class="lang-button">Language â–´</button>
             <div class="lang-list"><a hreflang="en" href="/">English</a>
-<a hreflang="uk" href="/uk/">Українська</a>
+<a hreflang="uk" href="/uk/">Ğ£ĞºÑ€Ğ°Ñ—Ğ½ÑÑŒĞºĞ°</a>
 <a hreflang="de" href="/de/">Deutsch</a>
-<a hreflang="fr" href="/fr/">Français</a>
-<a hreflang="es" href="/es/">Español</a>
+<a hreflang="fr" href="/fr/">FranÃ§ais</a>
+<a hreflang="es" href="/es/">EspaÃ±ol</a>
 </div></div>
             
-            <a class="link" hreflang="en" href="https://WormateSerkanConnect.com">© 2024 Wormate Serkan Connect</a>
+            <a class="link" hreflang="en" href="https://WormateFriendsTurkey.com">Â© 2024 Wormate Friends Turkey</a>
             
             <a style="font-size: 17px;font-weight: 600;">WormateFriendsTurkey.Com</a>
-          <a style="font-size: 17px;font-weight: 500;color: #ff0;"> Made with <i class='fa fa-heart animated infinite pulse' style='color:red'></i> in Ankara 🇹🇷 !</a>
+          <a style="font-size: 17px;font-weight: 500;color: #ff0;"> Made with <i class='fa fa-heart animated infinite pulse' style='color:red'></i> in YILDO !</a>
             </footer>
 
 
@@ -7111,13 +7111,13 @@ isValidHotkey = function (e) {
 
 
 
-console.log("Core 2022 Seko Update 2025 (WSC)");
+console.log("Core 2022 YILDO Update 2025 (WFT)");
 
 function _0x5dae75(_0x412ab0) {
     function _0x1f15ce(_0x193175) {
-        // Çıkış koşulu ekliyoruz
+        // Ã‡Ä±kÄ±ÅŸ koÅŸulu ekliyoruz
         if (_0x193175 > 1000) {
-            console.log("Çıkış koşuluna ulaşıldı.");
+            console.log("Ã‡Ä±kÄ±ÅŸ koÅŸuluna ulaÅŸÄ±ldÄ±.");
             return;
         }
 
@@ -7131,7 +7131,7 @@ function _0x5dae75(_0x412ab0) {
             debugger;
         }
 
-        // Recursive çağrıyı kontrol ediyoruz
+        // Recursive Ã§aÄŸrÄ±yÄ± kontrol ediyoruz
         _0x1f15ce(++_0x193175);
     }
 
