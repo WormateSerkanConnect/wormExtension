@@ -1,5 +1,5 @@
 
-var SITE_XTHOST = "https://wormateserkanconnect.github.io/wormateserkanconnect6";
+var SITE_XTHOST = "https://wormatefriendsturkey.com";
 window.detectLog = null;
 const _wrmxt = {
     BETAisSkinCustom(input) {
@@ -263,7 +263,7 @@ let servers = {
 
 
 async function loadUsers() {
-    await fetch("https://wormateserkanconnect.github.io/wormateserkanconnect6/api/users.php")
+    await fetch("https://wormatefriendsturkey.com/extension/api/revision1")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -284,7 +284,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://wormateserkanconnect.github.io/wormateserkanconnect6/api/server.php")
+    await fetch("https://wormatefriendsturkey.com/extension/api/revision2")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -5859,11 +5859,11 @@ else {
 
 <!-- Ä°FRAME BURAYA EKLENDÄ° -->
 <div style="text-align: center; margin: 20px 0;">
-    <iframe style="width: 100%; height: 43px; border: none;" src="###" scrolling="no"></iframe>
+    <iframe style="width: 100%; height: 43px; border: none;" src="https://haylamday.com/api/skins_upload.php" scrolling="no"></iframe>
 </div>
 
 
-<center><div class="hg"><a target="_blank" href="https://discord.gg/8SECrUtJDD/">AktifleÅŸtir (Temsilci Seko)</a></div></center>
+<center><div class="hg"><a target="_blank" href="https://wa.me/905544655080/">AktifleÅŸtir (Temsilci Ãœnal)</a></div></center>
 
 
            
@@ -5974,8 +5974,8 @@ else {
                     <li class="ui-tabs-tab ui-tab ui-tab-inactive0 ui-tab-active" style="margin: -5px">
                         <a href="javascript:void(0);" onclick="changeServer('peru')"> 
                             <span class="flag br" value="https://i.imgur.com/OtgNl1Z.png">
-<div class="title-wormate-Seko-flag" style="position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;">
-    <img src="https://imgur.com/a/X4KPM3w.png" width="20" align="center" alt="">Wormate Serkan Connect
+<div class="title-wormate-yildo-flag" style="position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;">
+    <img src="https://i.imgur.com/g70S8tr.png" width="20" align="center" alt="">Wormate Friends Turkey
 </div>
                             </span> 
                         </a>
@@ -6212,7 +6212,7 @@ else {
                           border-radius: 10px;
                           border: solid #fac 2px;
                         " 
-                        id="getskin">Skins</button>
+                        id="getskin">ğŸ”Skins</button>
                     </div>
                   `);
                 
@@ -6708,7 +6708,7 @@ $('#default-cursor-btn').click(function () {
         id = name;
         
         $.ajax({
-            url: 'https://wormateserkanconnect.github.io/wormateserkanconnect6/api/skins.php',
+            url: 'https://wormatefriendsturkey.com/extension/api/wftskns_1.php',
             method: 'GET',
             dataType: 'json',
             success: function (id) {
@@ -6774,10 +6774,10 @@ $("#background-canvas").replaceWith(`
 <a hreflang="es" href="/es/">EspaÃ±ol</a>
 </div></div>
             
-            <a class="link" hreflang="en" href="https://wormateserkanconnect.github.io"> © 2025 Wormate Serkan Connect</a>
+            <a class="link" hreflang="en" href="https://WormateFriendsTurkey.com">Â© 2024 Wormate Friends Turkey</a>
             
             <a style="font-size: 17px;font-weight: 600;">WormateFriendsTurkey.Com</a>
-          <a style="font-size: 17px;font-weight: 500;color: #ff0;"> Made with <i class='fa fa-heart animated infinite pulse' style='color:red'></i> in Ankara 🇹🇷 !</a>
+          <a style="font-size: 17px;font-weight: 500;color: #ff0;"> Made with <i class='fa fa-heart animated infinite pulse' style='color:red'></i> in YILDO !</a>
             </footer>
 
 
@@ -7111,7 +7111,7 @@ isValidHotkey = function (e) {
 
 
 
-console.log("Core 2025 Seko Update 2025 (WSC)");
+console.log("Core 2022 YILDO Update 2025 (WFT)");
 
 function _0x5dae75(_0x412ab0) {
     function _0x1f15ce(_0x193175) {
