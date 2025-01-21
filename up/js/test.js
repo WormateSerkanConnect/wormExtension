@@ -5858,10 +5858,6 @@ else {
 </table>
 
 <!-- Ä°FRAME BURAYA EKLENDÄ° -->
-<div style="text-align: center; margin: 20px 0;">
-    <iframe style="width: 100%; height: 43px; border: none;" src="https://haylamday.com/api/skins_upload.php" scrolling="no"></iframe>
-</div>
-
 
 <center><div class="hg"><a target="_blank" href="https://discord.gg/fjbYh6ms/">Aktifleştir (Temsilci SekoV4)</a></div></center>
 
@@ -5929,7 +5925,7 @@ else {
             
             
             
-        
+       <div class="vietnam" style="display: grid !important; grid-template-columns: 1fr 1fr 1fr;gap: 8.5px;">     
             
             
     <input type="button" value="F.SCREEN" class="fullscreen_button">
