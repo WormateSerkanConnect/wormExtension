@@ -7155,7 +7155,7 @@ function stopZoom(event) {
 
 if (event.key === 'z') {
 
-    window.multiplier = 1.000; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
+    window.multiplier = 1.750; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
 
     window.changedNf();
 
@@ -7175,7 +7175,7 @@ function stopZoom(event) {
 
 if (event.key === 'Z') {
 
-    window.multiplier = 1.000; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
+    window.multiplier = 1.750; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
 
     window.changedNf();
 
