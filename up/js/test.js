@@ -416,7 +416,7 @@ ctx.clock.y = -50;
 
 
 /*server name */
-ctx.value_server = new PIXI.Text("WFC", ctx.fontStyle.name);
+ctx.value_server = new PIXI.Text("WSC", ctx.fontStyle.name);
 ctx.value_server.x = 25;
 ctx.value_server.y = -18;
 
@@ -5722,31 +5722,31 @@ else {
          </div>
         <div class="worm_3">x.<span id="zoom-percentage"></span></div>
         <div class="worm_2">
-        <button id="settingBtn"><img src="https://i.imgur.com/bKAe6W9.png"/></button>
+        <button id="settingBtn"><img src="https://imgur.com/f074TPZ.png"/></button>
         <div id="settingContent">
         
         
         <div class="container1">
-                    <span class="settings_span">Solucan GÃ¶rÃ¼nÃ¼m: </span>
+                    <span class="settings_span">Solucan Görünüm: </span>
                     <input id="smoothCamera" class="range" type="range" min="0.3" max="0.6" value="' + theoKzObjects.smoothCamera + '" step="0.1" onmousemove="smoothCameraValue.value=value" />
         </div>         
         
         <div class="container1">
-        <span class="settings_span">Ä°tem BoyutlarÄ±: </span>
+        <span class="settings_span">İtem Boyutları:  </span>
         <input id="PortionSize" class="range" type="range" min="1" max="6" value="' + theoKzObjects.PortionSize + '" step="1" onmousemove="rangevalue1.value=value" />
         </div>
         
       <div class="container1">
-      <span class="settings_span">Ä°tem AyarlarÄ± Ã‡emberi: </span>
+      <span class="settings_span">İtem Ayarları Çemberi: </span>
       <input id="PortionAura" class="range" type="range" min="1.2" max="3.2" value="' + theoKzObjects.PortionAura + '" step="0.2" onmousemove="PortionAuravalue.value=value" />
       </div>
        
       <div class="container1">
-                    <span class="settings_span">MamalarÄ±n Boyutu: </span>
+                    <span class="settings_span">Mamaların Boyutu:  </span>
                     <input id="FoodSize" class="range" type="range" min="0.5" max="3" value="' + theoKzObjects.FoodSize + '" step="0.5" onmousemove="rangevalue2.value=value" />
                     </div>
                     <div class="container1">
-                    <span class="settings_span">Mama Efektleri: </span>
+                    <span class="settings_span">Mama Efektleri:  </span>
                     <input id="FoodShadow" class="range" type="range" min="0.5" max="3" value="' + theoKzObjects.FoodShadow + '" step="0.5" onmousemove="FoodShadowvalue.value=value" />
                     </div>
     </div>
@@ -6181,17 +6181,17 @@ else {
                 
                  <div class="bao-list1">
                 <div class="list1"><i class="fa fa-book" aria-hidden="true" style="color:48ff00;"></i>
-                GÃ¼ncelleme : 20/01/2025
+                Güncelleme : 01/03/2025
                 </div>
                 
 <div class="list1" style="color: #48ff00; font-family: Arial, sans-serif; line-height: 1.6;">
     <ul style="list-style: none; padding: 0; margin: 0;">
-        <li><i class="fa fa-book" aria-hidden="true"></i> YazÄ± fontlarÄ± deÄŸiÅŸtirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> Oyun iÃ§inde harita deÄŸiÅŸtirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> Mouse gecikme olayÄ± dÃ¼zeltildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> Oyuncu sÄ±ralamasÄ± boyutu dÃ¼ÅŸÃ¼rÃ¼ldÃ¼.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> SÄ±nÄ±r Ã§izgisi dÃ¼zeltildi, daha ince hale getirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i> HS ses dÃ¼zeltildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i> Yazı fontları değiştirildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i>  Oyun içinde harita değiştirildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i>  Mouse gecikme olayı düzeltildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i>  Oyuncu sıralaması boyutu düşürüldü.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i>  Sınır çizgisi düzeltildi, daha ince hale getirildi.</li>
+        <li><i class="fa fa-book" aria-hidden="true"></i>  HS ses düzeltildi.</li>
         <li>
             <i class="fa fa-link" aria-hidden="true"></i>
             <a href="https://www.youtube.com/" style="color: #48ff00; text-decoration: none;">https://www.youtube.com/</a>
@@ -6745,9 +6745,6 @@ $('#default-cursor-btn').click(function () {
 $("#background-canvas").replaceWith(`
 
 
-    <canvas id="background-canvas" style="background-color: rgb(145, 73, 21); opacity: 0.65;"></canvas>
-    `);
-   //Arka Plan kapattÄ±k.  //  <canvas id="background-canvas"></canvas>
  
    
      
