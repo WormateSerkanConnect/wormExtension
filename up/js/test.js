@@ -5936,7 +5936,7 @@ else {
     
     <input type="button" value="RESPAWN" id="hoisinh" class="fullscreen_respawn">
     
-    <input type="button" value="SKİNLAB" onclick="window.location.href='###'" class="fullscreen_contact">
+    <input type="button" value="CONNTACT" onclick="window.location.href='https://www.facebook.com/people/Wormate-Serkan-Connect/61572063877914/'" class="fullscreen_contact">
     </div>
     
     
