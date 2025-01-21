@@ -408,7 +408,7 @@ body {display:block !important;}
   left:30px;
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text {
-  border-radius: 5px;
+  border-radius: 16px;
     background: rgba(0, 0, 0, .25);
     height: 320px;
     margin: 30px 0;
@@ -600,7 +600,7 @@ body {display:block !important;}
   height:100%;
   width:100%;
   text-align:center;
-  border-radius:4px;
+  border-radius:46px;
   font-size:20px;
   padding:0 6px;
   background-color:#fff;
@@ -648,22 +648,24 @@ body {display:block !important;}
   position:relative;
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-middle #mm-menu-cont .mm-actions #mm-action-play {
-  background-color:#8bc34a;
-  color:#fff;
-  overflow:hidden;
-  height:50px;
-  line-height:50px;
-  font-size:25px;
-  padding:0 10px;
-  box-sizing:border-box;
-  border-radius:5px;
-  border:0;
-  outline:0;
-  box-shadow:0 1px 1px 0 rgba(0,0,0,.2);
-  text-align:center;
-  text-shadow:0 0 1px #000;
-  cursor:pointer;
-  transition:background-color .5s ease;
+background-color: #8bc34a;
+    color: #ff0000;
+    overflow: hidden;
+    height: 60px;
+    line-height: 50px;
+    font-size: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: 0;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .2);
+    text-align: center;
+    text-shadow: 0 0 1px #000;
+    cursor: pointer;
+    transition: background-color .5s ease;
+    background-image: linear-gradient(45deg, #ffffff, #ffffff);
+    border-color: red;
+    border: #ff0000 3px outset;
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-middle #mm-menu-cont .mm-actions #mm-action-play:hover {
   box-shadow:0 1px 1px 0 rgba(0,0,0,.5);
@@ -816,7 +818,7 @@ body {display:block !important;}
   height:340px;
   margin:30px 0;
   background:rgba(0,0,0,.25);
-  border-radius:5px;
+  border-radius:16px;
   overflow:hidden;
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-right #loa831pibur0w4gv .label {
@@ -3774,10 +3776,10 @@ button:hover{
     height: 35px;
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
-    border: #3e9f1d 1px solid;
-    background-image: linear-gradient(#f8f6fb, rgb(58 161 8));
-    border-radius: 5px;}   
+    color: #ff0000;
+    border: ##ff0000 3px solid;
+    background-image: linear-gradient(#ffffff, #ffffff );
+    border-radius: 46px;}   
     
   
 
@@ -4080,8 +4082,8 @@ input[type="color"]::-moz-color-swatch {
 }
 
 .description-text, #loa831pibur0w4gv {
-    border: 1px solid #ffdc04;
-    box-shadow: 0px 0px 15px 10px #f7ff00;
+    border: 1px solid ##ffffff;
+    box-shadow: 0px 0px 15px 10px ##ffffff;
 }
   .text-vnxx {
     font-size: 24px;
