@@ -3777,9 +3777,9 @@ button:hover{
     font-size: 16px;
     font-weight: 600;
     color: #ff0000;
-    border: ##ff0000 3px solid;
+    border: #ff0000 3px solid;
     background-image: linear-gradient(#ffffff, #ffffff );
-    border-radius: 46px;}   
+    border-radius: 5px;}   
     
   
 
@@ -4082,8 +4082,8 @@ input[type="color"]::-moz-color-swatch {
 }
 
 .description-text, #loa831pibur0w4gv {
-    border: 1px solid ##ffffff;
-    box-shadow: 0px 0px 15px 10px ##ffffff;
+    border: 1px solid #ffffff;
+    box-shadow: 0px 0px 15px 10px #ffffff;
 }
   .text-vnxx {
     font-size: 24px;
