@@ -3555,15 +3555,15 @@ width: 40px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: #000000;
     border-radius: 5px;
     display: none;
     z-index: 9999;
-    color: #2c1b53;
+    color: #515151;
     width: 600px;
     height: 455px;
     font-size: 15px;
-    box-shadow: 0px 3px 20px 5px #a655cd !important;
+    box-shadow: 0px 3px 20px 5px #858585  !important;
     
 }
 
@@ -3684,8 +3684,8 @@ button:hover{
 }
 .hg {
     line-height: 1;
-    background: #f7941d;
-    width: 60%;
+    background: #0082ff;
+    width: 40%;
     font-weight: 600;
     border-radius: 8px;
     margin-top: 10px;
