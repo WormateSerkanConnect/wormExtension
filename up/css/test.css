@@ -3638,7 +3638,7 @@ width: 40px;
 
  .spancursor{
     border-bottom: solid;
-    background: #3a37af;
+    background: #0082ff;
     line-height: 2;
     color: #fff;
     font-size: 16px;
@@ -3646,7 +3646,7 @@ width: 40px;
  }
  .spancursor-right{
     border-bottom: solid;
-    background: #3a37af;
+    background: #0082ff;
     line-height: 2;
     color: #fff;
     font-size: 16px;
@@ -3669,7 +3669,7 @@ button:hover{
 
 
 .phdr1, .home {
-    background: #590cab;
+    background: #0082ff;
     text-align: left;
     padding-left: 10px;
     text-transform: uppercase;
