@@ -5929,7 +5929,7 @@ else {
             
             
             
-            <div class="vietnam" style="display: grid !important; grid-template-columns: 1fr 1fr 1fr;gap: 8.5px;">
+        
             
             
     <input type="button" value="F.SCREEN" class="fullscreen_button">
