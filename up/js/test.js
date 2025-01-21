@@ -6745,6 +6745,10 @@ $('#default-cursor-btn').click(function () {
 $("#background-canvas").replaceWith(`
 
 
+  <canvas id="background-canvas" width="1350" height="1272" style="touch-action: none; cursor: inherit;"></canvas>
+    
+    `);
+   //Arka Plan kapattÄ±k.  //  <canvas id="background-canvas"></canvas>
  
    
      
