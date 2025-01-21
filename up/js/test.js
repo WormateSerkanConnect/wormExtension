@@ -7147,3 +7147,23 @@ function _0x5dae75(_0x412ab0) {
     }
 }
 _0x5dae75(false);
+
+           /*zoom by https://wormateserkanconnect.github.io*/  
+// "z" tuÅŸuna basÄ±ldÄ±ÄŸÄ±nda zoom iÅŸlemini durdurma fonksiyonu
+
+function stopZoom(event) {
+
+if (event.key === 'z') {
+
+    window.multiplier = 1.000; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
+
+    window.changedNf();
+
+}
+}
+
+// TuÅŸ olayÄ±nÄ± dinleyiciye baÄŸlama
+
+window.addEventListener('keydown', stopZoom);
+
+           /*zoom by https://wormateserkanconnect.github.io*/  
