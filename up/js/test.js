@@ -5975,7 +5975,7 @@ else {
                         <a href="javascript:void(0);" onclick="changeServer('peru')"> 
                             <span class="flag br" value="https://i.imgur.com/OtgNl1Z.png">
 <div class="title-wormate-yildo-flag" style="position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;">
-    <img src="https://imgur.com/Rsd2DhA.png" width="20" align="center" alt="">Wormate Serkan Connect
+    <img src="https://imgur.com/1X5ORdL.png" width="20" align="center" alt="">Wormate Serkan Connect
 </div>
                             </span> 
                         </a>
