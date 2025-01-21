@@ -7155,36 +7155,9 @@ function stopZoom(event) {
 
 if (event.key === 'z') {
 
-    window.multiplier = 1.750; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
+    window.multiplier = 1.000; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
 
     window.changedNf();
 
 }
 }
-
-// TuÅŸ olayÄ±nÄ± dinleyiciye baÄŸlama
-
-window.addEventListener('keydown', stopZoom);
-
-           /*zoom by https://wormateserkanconnect.github.io*/ 
-
-           /*zoom by https://wormateserkanconnect.github.io*/  
-// "z" tuÅŸuna basÄ±ldÄ±ÄŸÄ±nda zoom iÅŸlemini durdurma fonksiyonu
-
-function stopZoom(event) {
-
-if (event.key === 'Z') {
-
-    window.multiplier = 1.750; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
-
-    window.changedNf();
-
-}
-}
-
-// TuÅŸ olayÄ±nÄ± dinleyiciye baÄŸlama
-
-window.addEventListener('keydown', stopZoom);
-
-           /*zoom by https://wormateserkanconnect.github.io*/  
-
