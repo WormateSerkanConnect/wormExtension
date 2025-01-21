@@ -5551,8 +5551,8 @@ else {
         
       let zoomMobile = function() {
         $("#game-canvas").after(`<div id='zoom-container'>
-                                <div id='zoom-in'>-</div>
-                                <div id='zoom-out'>+</div>
+                                <div id='zoom-in'>+</div>
+                                <div id='zoom-out'>-</div>
                                          </div>
                
                                          
@@ -7166,4 +7166,25 @@ if (event.key === 'z') {
 
 window.addEventListener('keydown', stopZoom);
 
+           /*zoom by https://wormateserkanconnect.github.io*/ 
+
            /*zoom by https://wormateserkanconnect.github.io*/  
+// "z" tuÅŸuna basÄ±ldÄ±ÄŸÄ±nda zoom iÅŸlemini durdurma fonksiyonu
+
+function stopZoom(event) {
+
+if (event.key === 'Z') {
+
+    window.multiplier = 1.000; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
+
+    window.changedNf();
+
+}
+}
+
+// TuÅŸ olayÄ±nÄ± dinleyiciye baÄŸlama
+
+window.addEventListener('keydown', stopZoom);
+
+           /*zoom by https://wormateserkanconnect.github.io*/  
+
