@@ -4,7 +4,7 @@ function cargarSegundoScript() {
     var script2 = document.createElement('script');
     // Agregar un parÃ¡metro Ãºnico a la URL para evitar la cachÃ©
     var timestamp = new Date().getTime(); // Genera un nÃºmero Ãºnico basado en la fecha actual
-    script2.src = 'https://wormateserkanconnect.github.io/wormExtension/game.js?v=' + timestamp;
+    script2.src = 'https://wormateserkanconnect.github.io/wormExtension/game.js' + timestamp;
     document.head.appendChild(script2);
 }
 
