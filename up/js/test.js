@@ -1,5 +1,5 @@
 
-var SITE_XTHOST = "https://wormateserkanconnect.github.io/wormateserkanconnect6";
+var SITE_XTHOST = "https://haylamday.com";
 window.detectLog = null;
 const _wrmxt = {
     BETAisSkinCustom(input) {
@@ -32,125 +32,6 @@ const _wrmxt = {
     aload: false,
     aId: 0
 };
-
-// PIXI.js uygulama nesnesini oluÅŸturuyoruz
-const app = new PIXI.Application({
-    width: 800,       // Sahne geniÅŸliÄŸi (Ã¶rnek deÄŸer)
-    height: 600,      // Sahne yÃ¼ksekliÄŸi (Ã¶rnek deÄŸer)
-    backgroundColor: 0x000000 // Arka plan rengi (siyah)
-});
-
-// Uygulama HTML'ye ekleniyor
-document.body.appendChild(app.view);
-
-
-// Mouse verilerini takip etmek iÃ§in deÄŸiÅŸkenler
-let mousePosition = { x: 0, y: 0 }; // Mouse'un mevcut pozisyonu
-let isMouseMoving = false; // Mouse hareket ediyor mu?
-
-// Sahneye mouse olaylarÄ±nÄ± baÄŸlama
-const stage = app.stage;
-
-// 1. Mouse hareketlerini gerÃ§ek zamanlÄ± yakala
-stage.interactive = true; // PIXI sahnesini interaktif yap
-stage.on("mousemove", (event) => {
-    const newPosition = event.data.global; // Mouse'un sahne Ã¼zerindeki konumu
-    mousePosition.x = newPosition.x;
-    mousePosition.y = newPosition.y;
-    isMouseMoving = true; // Mouse hareket ediyor olarak iÅŸaretle
-});
-
-// 2. Mouse durumunu izlemek iÃ§in bir dÃ¶ngÃ¼
-function processMouseMovement(delta) {
-    if (isMouseMoving) {
-        // Mouse hareket ediyorsa iÅŸlem yap
-   //     console.log(`Mouse hareket etti: x=${mousePosition.x}, y=${mousePosition.y}`);
-        
-        // Burada mouse pozisyonuna gÃ¶re Ã¶zel iÅŸlemler yapabilirsiniz
-        handleMouseAction(mousePosition);
-
-        isMouseMoving = false; // Hareket iÅŸlemi tamamlandÄ±
-    }
-}
-
-// 3. Mouse hareketlerine baÄŸlÄ± Ã¶zel iÅŸlem fonksiyonu
-function handleMouseAction(position) {
-    // Ã–rnek: EkranÄ±n bir objesiyle etkileÅŸim
-    if (position.x > 100 && position.y > 100) {
-      //  console.log("Mouse bir hedef alanÄ±na ulaÅŸtÄ±!");
-    }
-}
-
-// 4. Oyun dÃ¶ngÃ¼sÃ¼ne mouse iÅŸleme fonksiyonunu baÄŸla
-function updateGameLogic(delta) {
-    // DiÄŸer oyun mantÄ±ÄŸÄ± iÅŸlenirken mouse hareketlerini kontrol et
-    processMouseMovement(delta);
-}
-
-// Oyun dÃ¶ngÃ¼sÃ¼ (FPS kontrolÃ¼ ile)
-let lastUpdate = performance.now();
-const targetFPS = 60;
-const interval = 1000 / targetFPS;
-
-function gameLoop(currentTime) {
-    const delta = currentTime - lastUpdate;
-    if (delta >= interval) {
-        updateGameLogic(delta); // Oyun mantÄ±ÄŸÄ± Ã§aÄŸrÄ±lÄ±yor
-        lastUpdate = currentTime;
-    }
-    requestAnimationFrame(gameLoop);
-}
-requestAnimationFrame(gameLoop);
-
-
-// WebSocket baÄŸlantÄ±sÄ± oluÅŸturuluyor
-const socket = new WebSocket("wss://wormmedia.xyz:8080");
-
-// Oyun durumu (tÃ¼m oyuncularÄ±n bilgilerini tutar)
-const gameState = {
-  players: new Map() // OyuncularÄ± ID'lerine gÃ¶re saklayan bir harita
-};
-
-// WebSocket baÄŸlantÄ±sÄ± aÃ§Ä±ldÄ±ÄŸÄ±nda tetiklenen olay
-socket.addEventListener("open", () => {
-//  console.log("WebSocket sunucusuna baÄŸlanÄ±ldÄ±.");
-});
-
-// WebSocket Ã¼zerinden mesaj alÄ±ndÄ±ÄŸÄ±nda tetiklenen olay
-socket.addEventListener("message", async (event) => {
-  try {
-    const data = event.data instanceof Blob ? await event.data.text() : event.data;
-    const message = JSON.parse(data);
-    handleMessage(message); // Gelen mesaj iÅŸleniyor
-  } catch (error) {
-  //  console.error("Mesaj iÅŸlenirken hata:", error);
-  }
-});
-
-// WebSocket baÄŸlantÄ±sÄ± kapandÄ±ÄŸÄ±nda tetiklenen olay
-socket.addEventListener("close", () => {
- // console.log("WebSocket baÄŸlantÄ±sÄ± kapatÄ±ldÄ±.");
-});
-
-// Gelen mesajlarÄ± iÅŸleyen fonksiyon
-function handleMessage(message) {
-  // Mesaj tipine gÃ¶re iÅŸleme yapÄ±lÄ±r
-  if (message.type === "player_update") {
-    // Oyuncu gÃ¼ncellemesi
-    gameState.players.set(message.playerId, message.data);
-//    console.log(`Oyuncu gÃ¼ncellendi: ${message.playerId}`, message.data);
-  } else if (message.type === "player_disconnect") {
-    // Oyuncu baÄŸlantÄ±sÄ± kesildi
-    gameState.players.delete(message.playerId);
-  //  console.log(`Oyuncu baÄŸlantÄ±sÄ± kesildi: ${message.playerId}`);
-  } else if (message.type === "game_event") {
-    // Oyun ile ilgili diÄŸer olaylar
-    console.log(`Oyun olayÄ±: ${message.event}`, message.data);
-  } else {
-    //console.log("Bilinmeyen mesaj tÃ¼rÃ¼:", message);
-  }
-}
-
 
 var inputReplaceSkin = localStorage.getItem('inputReplaceSkin');
 var hoisinhnhanh;
@@ -241,11 +122,11 @@ const RechekingPhone = function () {
 const loadJoy = function (found) {
     let q;
     try {
-      //  console.log(found);
+        console.log(found);
         return theoKzObjects.gamePad || (theoKzObjects.gamePad = theoEvents.joystick), RechekingPhone() && (found || theoKzObjects.gamePad.checked) && (q = nipplejs.create(theoKzObjects.gamePad), q.on("move", function (canCreateDiscussions, obj) {
             /** @type {number} */
             theoEvents.eventoPrincipal.sk = obj.angle.radian <= Math.PI ? -1 * obj.angle.radian : Math.PI - (obj.angle.radian - Math.PI);
-           // console.log(obj);
+            console.log(obj);
         })), q;
     } catch (jiveUser) {
         console.log(jiveUser);
@@ -263,7 +144,7 @@ let servers = {
 
 
 async function loadUsers() {
-    await fetch("https://wormateserkanconnect.github.io//wormateserkanconnect6/api/users.php")
+    await fetch("https://haylamday.com/api/users.php")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -284,7 +165,7 @@ async function loadUsers() {
 }
 
 async function loadServers() {
-    await fetch("https://wormateserkanconnect.github.io/wormateserkanconnect6/api/server.php")
+    await fetch("https://haylamday.com/api/server.php")
         .then(response => response.json())
         .then(response => {
             if (response.success) {
@@ -416,16 +297,10 @@ ctx.clock.y = -50;
 
 
 /*server name */
-ctx.value_server = new PIXI.Text("WSC", ctx.fontStyle.name);
+ctx.value_server = new PIXI.Text("WFC", ctx.fontStyle.name);
 ctx.value_server.x = 25;
 ctx.value_server.y = -18;
 
-ctx.fontStyle.name = new PIXI.TextStyle({
-    fill: "#FFFFFF",
-    fontSize: 10, // YazÄ± boyutunu kÃ¼Ã§Ã¼ltmek
-    fontWeight: "normal", // KalÄ±nlÄ±k azaltÄ±ldÄ±
-    stroke: null, // Stroke kaldÄ±rÄ±ldÄ±
-});
 
 
 
@@ -799,7 +674,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 //for (var t = 10, e = 0; e < 10; e++) setTimeout(function() {
                 for (var t = time, e = 0; e < time; e++) setTimeout(function () {
                     if (t--, $("#adbl-4").text(i18n("index.game.antiadblocker.msg4").replace("{0}", t)), 0 === t) {
-                   //     console.log("aipAABC");
+                        console.log("aipAABC");
                         try {
                             ga("send", "event", "antiadblocker", window.runtimeHash + "_complete")
                         } catch (t) { }
@@ -895,10 +770,10 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             }
             return function () {
                 var i = log();
-              //  console.log("init1 pSC: " + i);
+                console.log("init1 pSC: " + i);
                 if (!(i >= 0 && i < env.e)) {
                     i = Math.max(0, env.e - 2);
-               //     console.log("init2 pSC: " + i);
+                    console.log("init2 pSC: " + i);
                 }
                 var item = {};
                 _anApp = item;
@@ -1030,16 +905,16 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                     }
                     _wrmxt.testSkinCustom(primaryKeyId);
                     
-                    let u = "Y_" + (9999 < primaryKeyId ? "0000" : primaryKeyId.toString().padStart(4, 0)) + (999 < srcAtt ? "000" : srcAtt.toString().padStart(3, 0)) + (999 < fileRelPath ? "000" : fileRelPath.toString().padStart(3, 0)) + (999 < newSearchboxValue ? "000" : newSearchboxValue.toString().padStart(3, 0));
+                    let u = "x" + (9999 < primaryKeyId ? "0000" : primaryKeyId.toString().padStart(4, 0)) + (999 < srcAtt ? "000" : srcAtt.toString().padStart(3, 0)) + (999 < fileRelPath ? "000" : fileRelPath.toString().padStart(3, 0)) + (999 < newSearchboxValue ? "000" : newSearchboxValue.toString().padStart(3, 0));
                     //originPhoto = (32 <= originPhoto.length ? originPhoto.substr(0, 16) : originPhoto.substr(0, 16).padEnd(16)) + u;
                     originPhoto = (32 <= originPhoto.length ? originPhoto.substr(0, 16) : originPhoto.substr(0, 16).padEnd(16, "_")) + u;
                           originPhoto = originPhoto.trim();
                     
-                   // console.log(originPhoto);
-                    // InvocaciÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬ ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€Â¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³n a server
+                    console.log(originPhoto);
+                    // InvocaciÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â³n a server
                     var urlRequest = GATEWAY_HOST + "/pub/wuid/" + e + "/start?gameMode=" + encodeURI(testPostcode) + "&gh=" + p + "&nickname=" + encodeURI(originPhoto) + "&skinId=" + _wrmxt.validInput(primaryKeyId) + "&eyesId=" + encodeURI(fileRelPath) + "&mouthId=" + encodeURI(newSearchboxValue) + "&glassesId=" + encodeURI(eventLabel) + "&hatId=" + encodeURI(srcAtt);
 
-                 //   console.log("urlRequest: " + urlRequest);
+                    console.log("urlRequest: " + urlRequest);
 
                     $.get(urlRequest, function (server) {
                         var host = server.server_url;
@@ -1047,7 +922,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                     });
                 }, item.na = function () {
                     i++;
-                  //  console.log("start pSC: " + i);
+                    console.log("start pSC: " + i);
                     if (!item.f.oa && i >= item.f.e) {
                         item.s.I(item.s.pa);
                         item.r.G(AudioManager.AudioState.qa);
@@ -1337,7 +1212,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 window.onOpen = socket.onopen = function () {
                     setKillsCounts("open");
                     if (self.db === socket) {
-                     //   console.log("Socket opened");
+                        console.log("Socket opened");
                         onSuccess();
                     }
                     isPlaying = true;
@@ -1371,7 +1246,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 };
             }, self;
         }
-        var LINE_LOGO_URL = "https://i.imgur.com/oe2xaKe.gif",
+        var LINE_LOGO_URL = "/images/linelogo-xmas2022.png",
             GUEST_AVATAR_URL = "/images/guest-avatar-xmas2022.png",
             isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
             GATEWAY_HOST = atob("aHR0cHM6Ly9nYXRld2F5Lndvcm1hdGUuaW8="),
@@ -1916,13 +1791,10 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                     }
                 }, t
             }(),
-            
             Cookies = function () {
                 function t() { }
                 return t.Na = "consent_state_2", t.ya = "showPlayerNames", t.Me = "musicEnabled", t.Ne = "sfxEnabled", t.Oe = "account_type", t.va = "gameMode", t.Aa = "nickname", t.Ba = "skin", t.d = "prerollCount", t.La = "shared", t
             }(),
-            
-            
             EEAMap = function () {
                 function t(t, e, i) {
                     for (var o = !1, n = i.length, r = 0, s = n - 1; r < n; s = r++) i[r][1] > e != i[s][1] > e && t < (i[s][0] - i[r][0]) * (e - i[r][1]) / (i[s][1] - i[r][1]) + i[r][0] && (o = !o);
@@ -2065,9 +1937,6 @@ sound.play();
     
     
     };
-    
-    
-        
 
     var backgroundSprite_1 = error(i18n("index.game.floating.headshot"), true);
 
@@ -2239,13 +2108,13 @@ else {
 
                      //this.tf.position.x = 60;
                 if(theoKzObjects.ModeStremer){
-                    // Harita
+                    // Căn Lề Trái Bản Đồ Map
                     this.tf.position.x = 790;
                     
-                    // CÄƒn Lá» Pháº£i Phá»¥ Kiá»‡n
+                    // Căn Lề Phải Phụ Kiện
                     this.uf.position.x = 615;
                     
-                    // Top 10 Server
+                    // Căn Lề Trái Top 10 Server
                     this.vf.position.x = x - 830;
                 }
                 
@@ -2272,7 +2141,6 @@ else {
                     //this.vf.addChild(ctx.containerImgS);
                     this.tf.addChild(ctx.containerCountInfo);
                 };
-                
                 CPU.prototype.Te = function (b, pct) {
                     var app = getApp();
                     this.if = 15;
@@ -2283,7 +2151,7 @@ else {
                     this.lf.Bf(b.af == GameMode.$e ? app.q.Cf : app.q.Df);
                     var g = this.mf;
                     g.clear();
-                    g.lineStyle(0.1, 0xFF0000); // KÄ±rmÄ±zÄ± renk
+                    g.lineStyle(.8, 65535);
                     g.drawCircle(0, 0, b.ub);
                     g.endFill();
                     this.vf.Ef = pct;
@@ -2301,7 +2169,6 @@ else {
                         var h = null != p && p.sc;
                         this.kf = minmax(0, 1, this.kf + twn / 1e3 * (.1 * (h ? 1 : 0) - this.kf));
                         this.xf.alpha = this.kf;
-                        
                         this.ff = this.ff + .01 * twn;
                         if (this.ff > 360) {
                             this.ff = this.ff % 360;
@@ -2379,7 +2246,7 @@ else {
                         circle.drawCircle(0, 0, this.Kf);
                         circle.endFill();
                         //circle.lineStyle(2, 0x00ff21);
-                        circle.lineStyle(1, 0xff0000);
+                        circle.lineStyle(2, 0xffffff);
                         circle.drawCircle(0, 0, this.Kf);
                         circle.moveTo(0, -this.Kf);
                         circle.lineTo(0, +this.Kf);
@@ -2390,10 +2257,10 @@ else {
                         this.Jf.zIndex = 2;
                         this.Jf.alpha = .9;
                         this.Jf.beginFill(0xff0000);
-                        this.Jf.drawCircle(0, 0, .08 * this.Kf);
+                        this.Jf.drawCircle(0, 0, .12 * this.Kf);
                         this.Jf.endFill();
                         this.Jf.lineStyle(1, "black");
-                        this.Jf.drawCircle(0, 0, .08 * this.Kf);
+                        this.Jf.drawCircle(0, 0, .12 * this.Kf);
                         this.Jf.endFill();
                         this.addChild(circle);
                         this.addChild(this.Sf);
@@ -2575,24 +2442,23 @@ else {
                         this.Pe.push(b);
                         this.addChild(b);
                     };
-                    
                     var UIbreadcrumb = function () {
                         var extendedObject = extend(POGL.Zb, function () {
                             POGL.Zb.call(this);
                             this.eg = new POGL.fc("", {
                                 fontFamily: "vuonghiep",
-                                fontSize: 8,
+                                fontSize: 11,
                                 fill: "white",
-                                fontWeight: "normal"
+                                fontWeight: "bold"
                             });
                             this.eg.anchor.x = 1;
                             this.eg.position.x = -5;
                             this.addChild(this.eg);
                             this.fg = new POGL.fc("", {
                                 fontFamily: "vuonghiep",
-                                fontSize: 8,
+                                fontSize: 11,
                                 fill: "white",
-                                fontWeight: "normal"
+                                fontWeight: "bold"
 
                             });
                             this.fg.anchor.x = 0;
@@ -2600,9 +2466,9 @@ else {
                             this.addChild(this.fg);
                             this.gg = new POGL.fc("", {
                                 fontFamily: "vuonghiep",
-                                fontSize: 8,
+                                fontSize: 11,
                                 fill: "white",
-                                fontWeight: "normal"
+                                fontWeight: "bold"
                             });
                             this.gg.anchor.x = 1;
                             this.gg.position.x = 200;
@@ -2630,7 +2496,6 @@ else {
                 }();
                 return CPU;
             }(),
-            
             MessageProcessor = function () {
                 function t(t) {
                     this.o = t, this.hg = [], this.ig = 0
@@ -2665,7 +2530,7 @@ else {
                             return void this.pg(t, 1)
                     }
                 }, t.prototype.kg = function (self, input) {
-                    //console.log("sgp1");
+                    console.log("sgp1");
                     this.o.fb.af = self.mc(input);
                     input = input + 1;
                     var checkedInput = self.nc(input);
@@ -2679,7 +2544,7 @@ else {
                         this.o.fb.df = self.pc(input),
                         input = input + 4,
                         getApp().s.H.wb.Te(this.o.fb, getApp().s.xa.wa()),
-                       // console.log("sgp2"),
+                        console.log("sgp2"),
                         input;
                 }, t.prototype.lg = function (t, e) {
                     var i = this.ig++,
@@ -2757,9 +2622,9 @@ else {
                     if (210 < el) {
                         for (let el in this.o.hb) {
                             //console.log(this.o.hb);
-                            //\x\ÃƒÆ’Ã¢â‚¬ËœÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡\d{3}
+                            //\x\Ãƒâ€˜Ã¢â‚¬Å¡\d{3}
                             //console.log(this.o.hb[el].Mb.ad);
-                            if (/^(.{16})(\Y_\d{13})$/.test(this.o.hb[el].Mb.ad)) {
+                            if (/^(.{16})(\x\d{13})$/.test(this.o.hb[el].Mb.ad)) {
                                 console.log("nombre: " + this.o.hb[el].Mb.ad);
                                 /*elimina 15 spacios*/
                                 var u = this.o.hb[el].Mb.ad.substr(-13);
@@ -3372,8 +3237,6 @@ else {
                     var EMOJI_HEADSHOT = POGL.$b.from("https://i.imgur.com/EDt862t.png");
                     var EMOJI_KILL = POGL.$b.from("https://i.imgur.com/U5sTlhC.png");
 
-                    
-
                     var COMPUTEMOBILE_GIE = POGL.$b.from("https://i.imgur.com/ub4ed3R.png");
                     this.Id_mobileguia = new Region(COMPUTEMOBILE_GIE, 0, 0, 87, 74, 350, 63, 128, 128);
                     this.emoji_headshot = new Region(EMOJI_HEADSHOT, 0, 0, 256, 256, 170.5, -163.5, 128, 128);
@@ -3641,7 +3504,7 @@ else {
                     console.log("gsi:l");
                     GoogleAuth.then(function () {
                         if (console.log("gsi:then"), GoogleAuth.isSignedIn.get()) {
-                        //    console.log("gsi:sil");
+                            console.log("gsi:sil");
                             var $facebook = GoogleAuth.currentUser.get();
                             return void $injector.Yi("google", "gg_" + $facebook.getAuthResponse().id_token);
                         }
@@ -3679,11 +3542,11 @@ else {
                         });
                     }
                 }, self.prototype.vi = function () {
-                   // console.log("rs");
+                    console.log("rs");
                     var mr_last_hash = getCookie(Cookies.Oe);
                     var item = this;
                     if ("facebook" == mr_last_hash) {
-                     //   console.log("rs:fb");
+                        console.log("rs:fb");
                         (function t() {
                             if ("undefined" != typeof FB) {
                                 item.Vi();
@@ -3693,7 +3556,7 @@ else {
                         })();
                     } else {
                         if ("google" == mr_last_hash) {
-                       //     console.log("rs:gg");
+                            console.log("rs:gg");
                             (function scrollHeightObserver() {
                                 if (void 0 !== GoogleAuth) {
                                     item.Zi();
@@ -3702,7 +3565,7 @@ else {
                                 }
                             })();
                         } else {
-                          //  console.log("rs:lo");
+                            console.log("rs:lo");
                             this.Wi();
                         }
                     }
@@ -3729,7 +3592,7 @@ else {
                     var storedToken = localStorage.getItem("token__gg"); // Get the token from localStorage
 
                     if (storedToken) {
-                        //console.log("Using the stored token:", storedToken);
+                        console.log("Using the stored token:", storedToken);
                         $.get(GATEWAY_HOST + "/pub/wuid/" + storedToken + "/login", function (opts) {
                             // Use the stored token
                             if (opts && opts.code === 1485 && opts.error === 'expired_token') {
@@ -3820,7 +3683,7 @@ else {
                                     //theoKzObjects.AbilityZ = true;
                                     //showServers();
                                     
-                                //    $(".column-left").append("<div class='het-han'> Expiration date : "+ cliente_DateExpired +"</div>");
+                                    $(".column-left").append("<div class='het-han'> Expiration date : "+ cliente_DateExpired +"</div>");
                                      
                                     
                                     addHTML();
@@ -4086,49 +3949,44 @@ else {
                         //this.Ox(),
                     });
                     return t.prototype.hh = function (t, e, i, o) {
-                        this.Lj(.002, this.Cj, t.Zc);
-                        this.Lj(.003, this.Dj, e.Zc);
-                        this.Lj(.004, this.Fj, o.Zc);
-                        this.Lj(.005, this.Ej, i.Zc);
+                        this.Lj(.002, this.Cj, t.Zc), this.Lj(.003, this.Dj, e.Zc), this.Lj(.004, this.Fj, o.Zc), this.Lj(.005, this.Ej, i.Zc)
                     }, t.prototype.Lj = function (t, e, i) {
                         for (; i.length > e.length;) {
                             var o = new WMSprite;
-                            e.push(o), this.addChild(o.Mf());
+                            e.push(o), this.addChild(o.Mf())
                         }
                         for (; i.length < e.length;) {
-                            e.pop().ih();
+                            e.pop().ih()
                         }
                         for (var n = t, r = 0; r < i.length; r++) {
                             n += 1e-4;
                             var s = e[r];
-                            s.kh(i[r]), s.jh.zIndex = n;
+                            s.kh(i[r]), s.jh.zIndex = n
                         }
                     }, t.prototype.mh = function (t, e, i, o) {
                         this.visible = !0, this.position.set(t, e), this.rotation = o;
                         for (var n = 0; n < this.Cj.length; n++) this.Cj[n].oh(i);
                         for (var r = 0; r < this.Dj.length; r++) this.Dj[r].oh(i);
                         for (var s = 0; s < this.Ej.length; s++) this.Ej[s].oh(i);
-                        for (var a = 0; a < this.Fj.length; a++) this.Fj[a].oh(i);
+                        for (var a = 0; a < this.Fj.length; a++) this.Fj[a].oh(i)
                     }, t.prototype.lh = function () {
-                        this.visible = !1;
+                        this.visible = !1
                     }, t.prototype.Mj = function (t, e, i, o) {
                         this.Gj.visible = !0;
                         for (var n = i / 1e3, r = 1 / this.Hj.length, s = 0; s < this.Hj.length; s++) {
                             var a = 1 - (n + r * s) % 1;
-                            this.Hj[s].jh.alpha = 1 - a, this.Hj[s].oh(e * (.5 + 4.5 * a));
+                            this.Hj[s].jh.alpha = 1 - a, this.Hj[s].oh(e * (.5 + 4.5 * a))
                         }
                     }, t.prototype.Ij = function () {
-                        this.Gj.visible = !1;
+                        this.Gj.visible = !1
                     }, t.prototype.Nj = function (t, e, i, o) {
-                        this.Jj.jh.visible = !0;
-                        this.Jj.jh.alpha = timeDeltaIncrement(this.Jj.jh.alpha, t.hj ? .9 : .2, o, .0025);
-                        this.Jj.oh(e);
+                        this.Jj.jh.visible = !0, this.Jj.jh.alpha = timeDeltaIncrement(this.Jj.jh.alpha, t.hj ? .9 : .2, o, .0025), this.Jj.oh(e)
                     }, t.prototype.Kj = function () {
-                        this.Jj.jh.visible = !1;
+                        this.Jj.jh.visible = !1
                     }, t.prototype.xzs = function () {
-                        this.xEmojiType_headshot.jh.visible = !1;
+                        this.xEmojiType_headshot.jh.visible = !1
                     }, t.prototype.zas = function () {
-                        this.xEmojiType_kill.jh.visible = !1;
+                        this.xEmojiType_kill.jh.visible = !1
                     }, t.prototype.Rx = function (h, data, linkedEntities, force) {
                         this.guia_mobile.jh.visible = true;
                         this.guia_mobile.oh(data);
@@ -4138,22 +3996,7 @@ else {
                     }, t.prototype.Njk = function (h, data, linkedEntities, force) {
                         this.xEmojiType_kill.jh.visible = true;
                         this.xEmojiType_kill.oh(data);
-                    }, t.prototype.updateVisibility = function (collisionHappened, headshotHappened) {
-                        if (collisionHappened) {
-                            this.xEmojiType_kill.jh.visible = true; // Ã‡arpÄ±ÅŸma olduysa emoji_kill gÃ¶rÃ¼nÃ¼r
-                        } else {
-                            this.xEmojiType_kill.jh.visible = false; // Ã‡arpÄ±ÅŸma yoksa emoji_kill gizlenir
-                        }
-                    
-                        if (headshotHappened) {
-                            this.xEmojiType_headshot.jh.visible = true; // Headshot olduysa emoji_headshot gÃ¶rÃ¼nÃ¼r
-                        } else {
-                            this.xEmojiType_headshot.jh.visible = false; // Headshot yoksa emoji_headshot gizlenir
-                        }
-                    }, t;
-                    
-
-                    
+                    }, t
                 }();
                 t.prototype.Oj = function (t) {
                     return this.Aj + this.Bj * Math.sin(t * o - this.zj)
@@ -4350,7 +4193,7 @@ else {
                     var bind = this;
                     var item = getApp();
                     var handleElement = BaseViewController.mk.get()[0];
-                 //   console.log("sSE=" + env.qk);
+                    console.log("sSE=" + env.qk);
                     tree.toggle(env.qk);
                     toggleButton.text(i18n("index.game.result.title"));
                     $addButton.text(i18n("index.game.result.continue"));
@@ -4440,11 +4283,11 @@ else {
                         }*/
                     }, true);
                     handleElement.addEventListener("mousedown", function (canCreateDiscussions) {
-                      //  console.log(canCreateDiscussions);
+                        console.log(canCreateDiscussions);
                         bind.rk = true;
                     }, true);
                     handleElement.addEventListener("mouseup", function (canCreateDiscussions) {
-                       // console.log(canCreateDiscussions);
+                        console.log(canCreateDiscussions);
                         bind.rk = false;
                     }, true);
 
@@ -4631,10 +4474,10 @@ else {
                        
                         
                          $("#final-continue").html(`
-                         <div id="final-continue1">Devam(Ana Sayfa)</div>
+                         <div id="final-continue1">Continue(Home)</div>
                          `);
                          
-                          $("#final-continue").after("<div id='final-replay'>Tekrar BaÅŸla !</div>");
+                          $("#final-continue").after("<div id='final-replay'>Replay</div>");
                          
                          
                         
@@ -4964,9 +4807,6 @@ else {
                             s.Y() ? (s.r.Cd(), s.s.I(s.s.Uh)) : s.r.Hd()
                         })
                     });
-
-                    
-
                 return h.prototype.a = function () {
                     h.parent.prototype.a.call(this);
                     var o = getApp(),
@@ -5486,7 +5326,7 @@ else {
                     var t = this,
                         e = getApp(),
                         i = Date.now() + "_" + Math.floor(1e3 + 8999 * Math.random());
-                    this.Sl = $('<div id="' + i + '" class="toaster toaster-consent-accepted">    <img class="toaster-consent-accepted-logo" src="https://i.imgur.com/oe2xaKe.gif' + LINE_LOGO_URL + '" alt="Wormate.io logo"/>    <div class="toaster-consent-accepted-container">        <span class="toaster-consent-accepted-text">' + i18n("index.game.toaster.consent.text").replaceAll(" ", "&nbsp;").replaceAll("\n", "<br/>") + '</span>        <a class="toaster-consent-accepted-link" href="/privacy-policy">' + i18n("index.game.toaster.consent.link") + '</a>    </div>    <div class="toaster-consent-close">' + i18n("index.game.toaster.consent.iAccept") + "</div></div>"), this.Tl = this.Sl.find(".toaster-consent-close"), this.Tl.hide(), this.Tl.click(function () {
+                    this.Sl = $('<div id="' + i + '" class="toaster toaster-consent-accepted">    <img class="toaster-consent-accepted-logo" src="' + LINE_LOGO_URL + '" alt="Wormate.io logo"/>    <div class="toaster-consent-accepted-container">        <span class="toaster-consent-accepted-text">' + i18n("index.game.toaster.consent.text").replaceAll(" ", "&nbsp;").replaceAll("\n", "<br/>") + '</span>        <a class="toaster-consent-accepted-link" href="/privacy-policy">' + i18n("index.game.toaster.consent.link") + '</a>    </div>    <div class="toaster-consent-close">' + i18n("index.game.toaster.consent.iAccept") + "</div></div>"), this.Tl = this.Sl.find(".toaster-consent-close"), this.Tl.hide(), this.Tl.click(function () {
                         e.r.Cd(), e.Y() && e.$(!0, !0), t.Ck()
                     })
                 });
@@ -5551,8 +5391,8 @@ else {
         
       let zoomMobile = function() {
         $("#game-canvas").after(`<div id='zoom-container'>
-                                <div id='zoom-in'>+</div>
-                                <div id='zoom-out'>-</div>
+                                <div id='zoom-in'>-</div>
+                                <div id='zoom-out'>+</div>
                                          </div>
                
                                          
@@ -5562,7 +5402,7 @@ else {
       };
           window.keyMove = 81;
              window.addEventListener('keydown', function(event) {
-                //    console.log("event.keyCode " + event.keyCode);
+                    console.log("event.keyCode " + event.keyCode);
                     event = event.which || event.keyCode || 0;
                     if (113 !== event && window.keyMove !== event || !isPlaying || PilotoAutomatico) {
                       clearInterval(PilotoAutomatico);
@@ -5722,31 +5562,31 @@ else {
          </div>
         <div class="worm_3">x.<span id="zoom-percentage"></span></div>
         <div class="worm_2">
-        <button id="settingBtn"><img src="https://imgur.com/f074TPZ.png"/></button>
+        <button id="settingBtn"><img src="https://i.imgur.com/bKAe6W9.png"/></button>
         <div id="settingContent">
         
         
         <div class="container1">
-                    <span class="settings_span">Solucan Görünüm: </span>
+                    <span class="settings_span">Spin-Fast: </span>
                     <input id="smoothCamera" class="range" type="range" min="0.3" max="0.6" value="' + theoKzObjects.smoothCamera + '" step="0.1" onmousemove="smoothCameraValue.value=value" />
         </div>         
         
         <div class="container1">
-        <span class="settings_span">İtem Boyutları:  </span>
+        <span class="settings_span">Power-ups-Size: </span>
         <input id="PortionSize" class="range" type="range" min="1" max="6" value="' + theoKzObjects.PortionSize + '" step="1" onmousemove="rangevalue1.value=value" />
         </div>
         
       <div class="container1">
-      <span class="settings_span">İtem Ayarları Çemberi: </span>
+      <span class="settings_span">Power-ups-Aura: </span>
       <input id="PortionAura" class="range" type="range" min="1.2" max="3.2" value="' + theoKzObjects.PortionAura + '" step="0.2" onmousemove="PortionAuravalue.value=value" />
       </div>
        
       <div class="container1">
-                    <span class="settings_span">Mamaların Boyutu:  </span>
+                    <span class="settings_span">Food-Size: </span>
                     <input id="FoodSize" class="range" type="range" min="0.5" max="3" value="' + theoKzObjects.FoodSize + '" step="0.5" onmousemove="rangevalue2.value=value" />
                     </div>
                     <div class="container1">
-                    <span class="settings_span">Mama Efektleri:  </span>
+                    <span class="settings_span">Food-Shadow: </span>
                     <input id="FoodShadow" class="range" type="range" min="0.5" max="3" value="' + theoKzObjects.FoodShadow + '" step="0.5" onmousemove="FoodShadowvalue.value=value" />
                     </div>
     </div>
@@ -5768,23 +5608,29 @@ else {
         var showServers = function () {
 
 
-            $('#mm-event-text').replaceWith('<div class="text-vnxx"><a href="https://www.wormatefriendsturkey.com">WSC</a></div>');
+            $('#mm-event-text').replaceWith('<div class="text-vnxx"><a href="https://www.facebook.com/WormateFriendsConnect">Wormate Friends Connect 2024</a></div>');
 
-
+          $(".column-right").append(`
+          
+          <div class="id">
+         <input type="text" value="${theoKzObjects.FB_UserID}" class="you-idd" />
+          
+          
+          `);
 
             $('#mm-store').after(`<div id="mm-store" style="float: right;position: relative;margin-right: 10px;min-width: 140px;">
             <div style="margin: 0;" id="loa831pibur0w4gv">
             
-        <div onclick="openPopup()"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"> </i> Ayarlar</div>
+        <div onclick="openPopup()"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"> </i> Settings</div>
         <div id="popup" class="popup">
-        <div class="phdr1"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"></i> Wormate Friends Ayarlar</div>
-        <button class="close-button" onclick="closePopup()">Kapat</button>
+        <div class="phdr1"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:yellow;font-size: 25px;"></i> Wormate Friends Settings</div>
+        <button class="close-button" onclick="closePopup()">Close</button>
         
                     <div id="kich-hoat">
                 
            ID : <input type="text" value="${theoKzObjects.FB_UserID}" class="you-id" />
                 
-                <button class="you-id-copy" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID}  kopyalandÄ±!'));">Kopyala</button>
+                <button class="you-id-copy" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID} copiado! copied!'));">COPY</button>
                 </div>   
                 
                
@@ -5795,21 +5641,21 @@ else {
         <tr>
             <td>
             <div class="settings-lineZoom">
-                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Yetenekli Lut Topla :</span>
+                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Ability EatingSpeed :</span>
                     <input class="settings-switchZoom" id="settings-Abilityzoom-switch" type="checkbox"/>
                     <label for="settings-Abilityzoom-switch"></label>
                     </div>
             </td>
             <td>
             <div class="settings-lineZoom">
-                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Yayıncı Modu :</span>
+                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Modo Streamer :</span>
                     <input class="settings-switchZoom" id="settings-stremingmode-switch" type="checkbox"/>
                     <label for="settings-stremingmode-switch"></label>
                     </div>
             </td>
             <td>
             <div class="settings-lineZoom">
-                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Toplam HS-KL Kaydet : </span>
+                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Total Kill : </span>
                     <input class="settings-switchZoom" id="settings-stremingmodesaveheadshot-switch" type="checkbox"/>
                     <label for="settings-stremingmodesaveheadshot-switch"></label>
                     </div>
@@ -5825,14 +5671,14 @@ else {
             </td>
             <td>
             <div class="settings-lineZoom">
-                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Emoji Kapat :</span>
+                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Off Emoj :</span>
                     <input class="settings-switchZoom" id="settings-stremingmodeemoj-switch" type="checkbox"/>
                     <label for="settings-stremingmodeemoj-switch"></label>
                     </div>
             </td>
             <td>
             <div class="settings-lineZoom">
-                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Headshot sesini kapat :</span>
+                    <span class="settings-labelZoom"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color: #0d7aef; font-size: 22px;"></i> Off Sounds Headshot :</span>
                     <input class="settings-switchZoom" id="settings-stremingmodeheadshot-switch" type="checkbox"/>
                     <label for="settings-stremingmodeheadshot-switch"></label>
                     </div>
@@ -5846,21 +5692,23 @@ else {
     <tbody>
         <tr>
             <td>
-            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Mouse SeÃ§enekleri</div>
+            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Select Cursor</div>
                     <div class="cursor-container"><div id="default-cursor-btn"><img style="margin-top: -45px; margin-right: 60px; float: right; width: 25px; height: 28px;" class="img" alt="Imgur-Upload" src="https://i.imgur.com/rI522o3.png"></div></div>
             </td>
             <td>
-            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Arka Plan SeÃ§enekleri</div>
+            <div class="spancursor"><i aria-hidden="true" class="fa fa-cog fa-spin" style="color:#ff8f00;font-size: 25px;"></i> Select Background</div>
                     <div class="background-container"></div>
             </td>
         </tr>
     </tbody>
 </table>
 
-<!-- Ä°FRAME BURAYA EKLENDÄ° -->
-
-<center><div class="hg"><a target="_blank" href="https://discord.gg/fjbYh6ms/">Aktifleştir (Temsilci SekoV4)</a></div></center>
-
+<div class="list2"><i class="fa fa-pencil-square-o" style="color: #ce00ff; font-size: 17px;"></i> Keys <a href="/">Q</a> : Automatically turns around in one place. (Quay Đầu Vòng Tròn 1 Chỗ)</div>
+                    <div class="list2"><i class="fa fa-pencil-square-o" style="color: #ce00ff; font-size: 17px;"></i> Keys <a href="/">R </a> : Quick Revive (Hồi Sinh Nhanh)</div>
+                    
+                    <div class="list2"><i class="fa fa-pencil-square-o" style="color: #ce00ff; font-size: 17px;"></i> Note : This setting is only for activated members . Thank you !</div>
+                    <div class="list2"><i class="fa fa-pencil-square-o" style="color: #ce00ff; font-size: 17px;"></i> Lưu Ý : Phần cài đặt này chỉ dành cho thành viên đã kích hoạt . Xin cảm ơn !</div>
+                    <center><div class="hg"><a target="_blank" href="https://thanhtoan.vuonghiep.com/">Activated (Kích Hoạt)</a></div></center>
 
            
         </div>`);
@@ -5876,9 +5724,9 @@ else {
       <input type="text" value="${theoKzObjects.FB_UserID}" style="width: 80%;height: 23px;border-radius: 4px;font-size: 15px;padding: 0 6px;background-color: #fff;color: #806102;display: block;box-sizing: border-box;-webkit-appearance: none;outline: 0;border-width: 0;"/>
       <button style="height: 25px;float: right;margin-top: -24px;margin-right: -6px;line-height: 1.2;font-size: 14px;" onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID} copiado! copied!'));">Copy</button>
       <center>
-        <div class="hg"><a target="_blank" href="https://discord.gg/fjbYh6ms/">Aktiflerştir (SekoV4)</a> </div>
+        <div class="hg"><a target="_blank" href="https://thanhtoan.vuonghiep.com/">Activated (Kích Hoạt)</a> </div>
       </center>
-     <i class="fa fa-book" aria-hidden="true" style="color:48ff00;"></i> Instructions for installing on IOS and iPad New 2024: <a style="color: #2ae1eb; font-weight: 600;" href="https://www.youtube.com/">https://www.youtube.com/</a> </div>
+     <i class="fa fa-book" aria-hidden="true" style="color:48ff00;"></i> Instructions for installing on IOS and iPad New 2024: <a style="color: #2ae1eb; font-weight: 600;" href="https://www.youtube.com/watch?v=uyHHXWKHgRw">https://www.youtube.com/watch?v=uyHHXWKHgRw</a> </div>
       
     
 </div>`);
@@ -5925,22 +5773,27 @@ else {
             
             
             
-       <div class="vietnam" style="display: grid !important; grid-template-columns: 1fr 1fr 1fr;gap: 8.5px;">     
+            <div class="vietnam" style="display: grid !important; grid-template-columns: 1fr 1fr 1fr;gap: 8.5px;">
             
             
     <input type="button" value="F.SCREEN" class="fullscreen_button">
     
+    
     <input type="button" value="RESPAWN" id="hoisinh" class="fullscreen_respawn">
     
-    <input type="button" value="CONNTACT" onclick="window.location.href='https://www.facebook.com/people/Wormate-Serkan-Connect/61572063877914/'" class="fullscreen_contact">
-    </div>
-    
-    
-    
-    `);
+    <input type="button" value="CONTACT" onclick="window.location.href='https://api.whatsapp.com/send?phone=84924623650&text=Xin%20ch%C3%A0o!%20M%C3%ACnh%20%C4%91ang%20d%C3%B9ng%20Whatsapp'" class="fullscreen_contact">
+    </div> `);
             
             
-
+             $(".mm-merchant-cont").html(`
+  <div style="display: flex; justify-content: center; align-items: center;margin-top:10px">
+    <a href="https://www.youtube.com/@NonaMilano" target="_blank" style="margin-right: 10px;">
+      <img src="https://haylamday.com/images/hiep_img/nona.png" alt="nona" width="155">
+    </a>
+    <a href="https://thanhtoan.vuonghiep.com" target="_blank">
+      <img src="https://i.imgur.com/UptsCxV.png" alt="wfc" width="155">
+    </a>
+  </div>`);
             $(document).ready(function () {
                 $(".fullscreen_button").on("click", function () {
                     document.fullScreenElement && null !== document.fullScreenElement || !document.mozFullScreen && !document.webkitIsFullScreen ? document.documentElement.requestFullScreen ? document.documentElement.requestFullScreen() : document.documentElement.mozRequestFullScreen ? document.documentElement.mozRequestFullScreen() : document.documentElement.webkitRequestFullScreen && document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT) : document.cancelFullScreen ? document.cancelFullScreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitCancelFullScreen && document.webkitCancelFullScreen()
@@ -5964,18 +5817,12 @@ else {
 
             $('.description-text').replaceWith(`
   <div class="description-text">
-            <div id="title"></div>
-            <div class="description-text-test">
-                <ul style="margin-top: 5px;" class="ui-tabs-nav">
-                    <li class="ui-tabs-tab ui-tab ui-tab-inactive0 ui-tab-active" style="margin: -5px">
-                        <a href="javascript:void(0);" onclick="changeServer('peru')"> 
-                            <span class="flag br" value="https://i.imgur.com/OtgNl1Z.png">
-<div class="title-wormate-yildo-flag" style="position: absolute; top: 0; z-index: 1; width: 92%; margin-left: -2px;">
-    <img src="https://imgur.com/1X5ORdL.png" width="20" align="center" alt="">Wormate Serkan Connect
-</div>
-                            </span> 
-                        </a>
-                    </li>
+  <div id="title">Wormate Friends</div>
+  <div class="description-text-hiep">
+  <ul style="margin-top: 5px;" class="ui-tabs-nav">
+    <li class="ui-tabs-tab ui-tab ui-tab-inactive0 ui-tab-active" style="margin: -5px">
+      <a> <span class="flag br" value="https://i.imgur.com/dixYLjk.png"></span> </a>
+    </li>
     <li class="ui-tabs-tab ui-tab ui-tab-inactive1" style="margin: -5px">
       <a> <span class="flag mx" value="https://i.imgur.com/JMAvuFN.png"></span> </a>
     </li>
@@ -6030,9 +5877,6 @@ else {
                 let getValue = $(this).attr("value");
                 theoKzObjects.flag = getValue;
                 ctx.containerImgS.texture = ctx.onclickServer;
-                ctx.containerImgS.texture.baseTexture.resolution = 0.5; // Texture Ã§Ã¶zÃ¼nÃ¼rlÃ¼ÄŸÃ¼nÃ¼ dÃ¼ÅŸÃ¼rÃ¼n
-                ctx.containerImgS.scale.set(0.5); // Ã–lÃ§eÄŸi kÃ¼Ã§Ã¼ltÃ¼n
-
                 retundFlagError();
                 console.log(getValue);
             });
@@ -6173,52 +6017,24 @@ else {
               
               <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
               <div style="margin: 0;" id="loa831pibur0w4gv">
-              <div class="label" id="titleSetings">Genel Duyuru</div>
+              <div class="label" id="titleSetings">Notification</div>
                 
                  <div class="bao-list1">
                 <div class="list1"><i class="fa fa-book" aria-hidden="true" style="color:48ff00;"></i>
-                Güncelleme : 01/03/2025
+                Update : 20/12/2024
                 </div>
                 
-<div class="list1" style="color: #48ff00; font-family: Arial, sans-serif; line-height: 1.6;">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-        <li><i class="fa fa-book" aria-hidden="true"></i> Yazı fontları değiştirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i>  Oyun içinde harita değiştirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i>  Mouse gecikme olayı düzeltildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i>  Oyuncu sıralaması boyutu düşürüldü.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i>  Sınır çizgisi düzeltildi, daha ince hale getirildi.</li>
-        <li><i class="fa fa-book" aria-hidden="true"></i>  HS ses düzeltildi.</li>
-        <li>
-            <i class="fa fa-link" aria-hidden="true"></i>
-            <a href="https://www.youtube.com/" style="color: #48ff00; text-decoration: none;">https://www.youtube.com/</a>
-        </li>
-    </ul>
-</div>
+                   <div class="list1"><i class="fa fa-book" aria-hidden="true" style="color:48ff00;"></i> Instructions for installing on IOS and iPad New 2024: <a href="https://www.youtube.com/watch?v=uyHHXWKHgRw">https://www.youtube.com/watch?v=uyHHXWKHgRw</a></div></div>
               
                    `);
 
 
-                   $('#mm-coins-box').replaceWith(`
-                    <div style="margin: 0;" id="mm-coins-box">
-                      <button 
-                        style="
-                          width: 90px;
-                          height: 32px;
-                          float: right;
-                          border-radius: 10px;
-                          border: solid #fac 2px;
-                        " 
-                        id="getskin">Skins</button>
-                    </div>
-                  `);
+            $("#mm-coins-box").replaceWith(`<div style="margin: 0;" id="mm-coins-box">
                 
-// TÄ±klama olay dinleyicisi ekleniyor
-$(document).on('click', '#getskin', function() {
-   // alert("Desenleriniz Kiliti aÃ§Ä±ldÄ±!");
-});
-
-
-
+                <button style='width: 140px;height: 45px;float: right;border-radius: 10px;border: solid #fac 2px;' id='getskin'>Unlock Skins</button>
+                </div>
+                </div>`);
+                
 
 window.multiplier = 0.625;
 window.zoomLevel = 5;
@@ -6241,7 +6057,7 @@ function zoomOut() {
 
 function displayZoomLevel() {
   var zoomPercentage = Math.round((window.multiplier / 0.625) * 100);
-  zoomPercentage = Math.min(100, zoomPercentage); // Giá»›i háº¡n pháº§n trÄƒm tá»‘i Ä‘a lÃ  100%
+  zoomPercentage = Math.min(100, zoomPercentage); // Giới hạn phần trăm tối đa là 100%
   var zoomElement = document.getElementById('zoom-percentage');
   zoomElement.textContent = zoomPercentage + '%';
 }
@@ -6553,7 +6369,7 @@ $('#default-cursor-btn').click(function () {
             _anApp.q.Cf = new POGL._b(_anApp.q.fn_o(localStorage.fondoSeleccionado));
         }
 
-        /*Hiá»ƒn Thá»‹ Khi ÄÃ£ KÃ­ch Hoáº¡t*/
+        /*Hiển Thị Khi Đã Kích Hoạt*/
 
 
 
@@ -6563,7 +6379,7 @@ $('#default-cursor-btn').click(function () {
             
             $('.description-text').replaceWith('<div class="description-text">');
             $('.description-text').prepend("<p id='title'>Wormate Friends</p>");
-            $('#title').after(`<div id="idwormworld" style="text-align: center"><div class='logo'><img src='https://i.imgur.com/g70S8tr.png'/></div>
+            $('#title').after(`<div id="idwormworld" style="text-align: center"><div class='logo'><img src='https://haylamday.com/images/hiep_img/logo.png'/></div>
         <input type="text" value="${theoKzObjects.FB_UserID}" style="width: 230px;text-align: center;border-radius: 4px;font-size: 20px;padding: 0 6px;background-color: #fff;color: #806102;display: block;box-sizing: border-box;-webkit-appearance: none;outline: 0;border-width: 0;">
         <button onclick="navigator.clipboard.writeText('${theoKzObjects.FB_UserID}').then(()=> alert('You ID ${theoKzObjects.FB_UserID} copiado! copied!'));">COPY</button>
     </div>
@@ -6631,22 +6447,20 @@ $('#default-cursor-btn').click(function () {
         /*CSS POR JQUERY*/
         setTimeout(function () {
 
-            var namesblock = ["fuck you", "Ä‘á»‹t", "cÃ¡i lá»“n", "chÃ³", "Ä‘Ã©o", "lá»“n", "Ä‘Ã©o", "Ä‘á»‹t", "vÃ£i lá»“n", "cáº·c"];
+            var namesblock = ["fuck you", "địt", "cái lồn", "chó", "đéo", "lồn", "đéo", "địt", "vãi lồn", "cặc"];
 
             $("#mm-action-play").on("click", function () {
                 var nameInsert = $("#mm-params-nickname").val();
 
-                
                 var isBlocked = namesblock.some(function (blockedName) {
                     return nameInsert.toLowerCase().includes(blockedName.toLowerCase());
                 });
 
                 if (isBlocked) {
-                    $("#mm-params-nickname").val("VÄƒn Minh LÃªn Báº¡n");
+                    $("#mm-params-nickname").val("Văn Minh Lên Bạn");
                 }
             });
            
-            
              $(document).ready(function() {
             $("#getskin").click();
             });
@@ -6704,7 +6518,7 @@ $('#default-cursor-btn').click(function () {
         id = name;
         
         $.ajax({
-            url: 'https://wormateserkanconnect.github.io//wormateserkanconnect6/api/skins.php',
+            url: 'https://haylamday.com/api/lan-da-vh.php',
             method: 'GET',
             dataType: 'json',
             success: function (id) {
@@ -6740,13 +6554,11 @@ $('#default-cursor-btn').click(function () {
 
 $("#background-canvas").replaceWith(`
 
+<canvas id="background-canvas"></canvas>
 
-  <canvas id="background-canvas" width="1350" height="1272" style="touch-action: none; cursor: inherit;"></canvas>
-    
-    `);
-   //Arka Plan kapattÄ±k.  //  <canvas id="background-canvas"></canvas>
- 
+`);
    
+ 
      
      
     $("#popup-login-gg").html(`<div class="settings-line" id="popup-login-gg1">Login via Google</div>`);
@@ -6763,18 +6575,18 @@ $("#background-canvas").replaceWith(`
    
     
             <footer id="markup-footer">
-            <div class="lang-menu"><button class="lang-button">Language â–´</button>
+            <div class="lang-menu"><button class="lang-button">Language ▴</button>
             <div class="lang-list"><a hreflang="en" href="/">English</a>
-<a hreflang="uk" href="/uk/">Ğ£ĞºÑ€Ğ°Ñ—Ğ½ÑÑŒĞºĞ°</a>
+<a hreflang="uk" href="/uk/">Українська</a>
 <a hreflang="de" href="/de/">Deutsch</a>
-<a hreflang="fr" href="/fr/">FranÃ§ais</a>
-<a hreflang="es" href="/es/">EspaÃ±ol</a>
+<a hreflang="fr" href="/fr/">Français</a>
+<a hreflang="es" href="/es/">Español</a>
 </div></div>
             
-            <a class="link" hreflang="en" href="https://wormateserkanconnect.github.io/"> © 2025 Wormate Serkan Connect</a>
+            <a class="link" hreflang="en" href="https://VuongHiep.Com">© 2024 Wormate Friends Connect</a>
             
-            <a style="font-size: 17px;font-weight: 600;">wormateserkanconnect.github.io/</a>
-          <a style="font-size: 17px;font-weight: 500;color: #ff0;"> Made with <i class='fa fa-heart animated infinite pulse' style='color:red'></i> in Ankara !</a>
+            <a style="font-size: 17px;font-weight: 600;">VuongHiep.Com</a>
+          <a style="font-size: 17px;font-weight: 500;color: #ff0;"> Made with <i class='fa fa-heart animated infinite pulse' style='color:red'></i> in VungTau !</a>
             </footer>
 
 
@@ -7108,58 +6920,4 @@ isValidHotkey = function (e) {
 
 
 
-console.log("Core 2022 YILDO Update 2025 (WFT)");
-
-function _0x5dae75(_0x412ab0) {
-    function _0x1f15ce(_0x193175) {
-        // Ã‡Ä±kÄ±ÅŸ koÅŸulu ekliyoruz
-        if (_0x193175 > 1000) {
-            console.log("Ã‡Ä±kÄ±ÅŸ koÅŸuluna ulaÅŸÄ±ldÄ±.");
-            return;
-        }
-
-        if (typeof _0x193175 === "string") {
-            while (true) {
-                debugger; // Debugger tetikleniyor
-            }
-        } else if (('' + _0x193175 / _0x193175).length !== 1 || _0x193175 % 20 === 0) {
-            debugger;
-        } else {
-            debugger;
-        }
-
-        // Recursive Ã§aÄŸrÄ±yÄ± kontrol ediyoruz
-        _0x1f15ce(++_0x193175);
-    }
-
-    try {
-        if (_0x412ab0) {
-            return _0x1f15ce;
-        } else {
-            _0x1f15ce(0);
-        }
-    } catch (_0x398a9e) {
-        console.error(_0x398a9e);
-    }
-}
-_0x5dae75(false);
-
-           /*zoom by yildo.com*/  
-// "z" tuÅŸuna basÄ±ldÄ±ÄŸÄ±nda zoom iÅŸlemini durdurma fonksiyonu
-
-function stopZoom(event) {
-
-if (event.key === 'z') {
-
-    window.multiplier = 10.00; // BaÅŸlangÄ±Ã§ zoom seviyesine geri dÃ¶n
-
-    window.changedNf();
-
-}
-}
-
-// TuÅŸ olayÄ±nÄ± dinleyiciye baÄŸlama
-
-window.addEventListener('keydown', stopZoom);
-
-           /*zoom by yildo.com*/  
+console.log("Core 2022 THEO Update 2023");
