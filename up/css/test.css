@@ -427,7 +427,7 @@ body {display:block !important;}
     border-radius: 6px;
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text:nth-child(n+2) {display:none;}
-#game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text * {font-size:12px;}
+#game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text * {font-size:16px;}
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text h1,
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text h2,
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text ul,
@@ -649,7 +649,7 @@ body {display:block !important;}
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-middle #mm-menu-cont .mm-actions #mm-action-play {
 background-color: #8bc34a;
-    color: #ff0000;
+    color: #0082ff;
     overflow: hidden;
     height: 60px;
     line-height: 50px;
@@ -663,9 +663,9 @@ background-color: #8bc34a;
     text-shadow: 0 0 1px #000;
     cursor: pointer;
     transition: background-color .5s ease;
-    background-image: linear-gradient(45deg, #ffffff, #ffffff);
-    border-color: red;
-    border: #ff0000 3px outset;
+    background-image: linear-gradient(45deg, #000000, #000000);
+    border-color: #0082ff;
+    border: #0082ff 3px outset;
 }
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-middle #mm-menu-cont .mm-actions #mm-action-play:hover {
   box-shadow:0 1px 1px 0 rgba(0,0,0,.5);
@@ -3776,9 +3776,9 @@ button:hover{
     height: 35px;
     font-size: 16px;
     font-weight: 600;
-    color: #ff0000;
-    border: #ff0000 3px solid;
-    background-image: linear-gradient(#ffffff, #ffffff );
+    color: #0082ff;
+    border: #0082ff 3px solid;
+    background-image: linear-gradient(#000000, #000000 );
     border-radius: 5px;}   
     
   
