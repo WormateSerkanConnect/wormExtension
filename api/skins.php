@@ -1,6 +1,3 @@
-
-
-
 {
   "revision": 100700,
   "visibleSkin": [
