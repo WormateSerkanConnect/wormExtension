@@ -557,6 +557,7 @@ body {
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text h1, #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text h2, #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text ul, #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text h1 {
   font-size: 15px;
   color: #fff;
+  /* height: 61px; */
 }
 
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-center .column-left .description-text h2 {
