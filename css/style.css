@@ -459,7 +459,7 @@ body {font-family: vuonghiep; }
   }
   .logo-server {
     width: 102%;
-    height: 45px;
+    height: 0;
     border: none;
     outline: 0;
     -o-object-fit: contain;
