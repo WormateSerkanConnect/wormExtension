@@ -1351,7 +1351,7 @@ WormWorld Connect
 </strong>
                 </div>
                 <a href="https://wormworld.io/active" target="_blank">
-                    <img src="https://i.imgur.com/0qMpjp0.png" style="width: 25px; vertical-align: middle" />
+                    <img src="https://i.imgur.com/0OssZVP.png" style="width: 25px; vertical-align: middle" />
                 </a>
             </div>
             <div id="wwc_room_item_2" style="
