@@ -18,19 +18,19 @@
             menu.innerHTML = `
                 <div class="fixed-background">
                     <div class="background-image"></div>
-                    <img src="https://i.imgur.com/jXzoG5D.png" class="logo" alt="Logo">
-                    <button id="opcion1" class="menu-button">Z WORM PLUS</button>
-                    <button id="opcion2" class="menu-button">Z WORM LITE</button>
+                    <img src="https://i.imgur.com/9OsuoL3.png" class="logo" alt="Logo">
+                    <button id="opcion1" class="menu-button"> PLUS</button>
+                    <button id="opcion2" class="menu-button"> LITE</button>
                 </div>
             `;
             document.body.appendChild(menu);
 
             document.getElementById('opcion1').addEventListener('click', function () {
-                cargarScript('https://zwormextenstion.com/wormExtension/game.js');
+                cargarScript('https://wormateserkanconnect.github.io/wormExtension/js/game_Plus.js');
             });
 
             document.getElementById('opcion2').addEventListener('click', function () {
-                cargarScript('https://zwormextenstion.com/wormExtension/game_lite.js'); // Reemplaza con la URL real del otro script
+                cargarScript('https://wormateserkanconnect.github.io/tim/game.js'); // Reemplaza con la URL real del otro script
             });
 
             var estilos = document.createElement('style');
