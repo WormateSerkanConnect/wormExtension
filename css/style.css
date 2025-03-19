@@ -1160,6 +1160,8 @@ div#loa831pibur0w4gv {}
   margin:10px;
   box-sizing:content-box;
 }
+
+div#mm-bottom-buttons {}
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-bottom #mm-bottom-buttons #mm-settings {
   background-color:#26c6da;
   color:#fff;
@@ -4432,9 +4434,11 @@ input[type="color"]::-moz-color-swatch {
   text-align: center;
 }
 #mm-wtr-settings {
-  border-end-end-radius: 20px !important;
-  border-start-end-radius: 20px !important;
+  /* border-end-end-radius: 20px !important; */
+  /* border-start-end-radius: 20px !important; */
 }
+
+div#mm-wtr-settings {margin-left: 729px;margin-top: -48px;width: 42px;background: #26c6da;text-align: center;font-size: 32px;}
 
 
 
