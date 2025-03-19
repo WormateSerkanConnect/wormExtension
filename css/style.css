@@ -1161,6 +1161,10 @@ div#loa831pibur0w4gv {}
   box-sizing:content-box;
 }
 
+div#mm-bottom-buttons {
+    /* display: block; */
+}
+
 div#mm-bottom-buttons {}
 #game-wrap #game-cont #stretch-box #main-menu-view #mm-line-bottom #mm-bottom-buttons #mm-settings {
   background-color:#26c6da;
